@@ -3,6 +3,8 @@ package View;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -11,6 +13,17 @@ import java.text.Format;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JSpinner;
+import java.awt.Component;
+import java.awt.Cursor;
+
+import javax.swing.SpinnerNumberModel;
+
+import Controller.AddEmployeeController;
+
+import javax.swing.SpinnerDateModel;
+import java.util.Date;
+import java.util.Calendar;
 
 public class AddEmployeeView extends JPanel {
 
@@ -20,6 +33,9 @@ public class AddEmployeeView extends JPanel {
 	private JTextField txtSin;
 	private JTextField txtAddres;
 	private JTextField txtEmail;
+	private JButton btnSaveEmp, btnClear;
+	private JComboBox cmbRole, cmbType;
+	private JSpinner paySpinner, hireDateSpinner, dobSpinner;
 
 	/**
 	 * Create the panel.
@@ -102,15 +118,6 @@ public class AddEmployeeView extends JPanel {
 		txtLname.setBounds(174, 92, 319, 23);
 		add(txtLname);
 		
-		// Create a DateFormatter for the date format we want
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        JFormattedTextField txtDob = new JFormattedTextField(format);
-        txtDob.setText("yyyy-mm-dd");
-        txtDob.setToolTipText("yyyy-MM-dd");
-        txtDob.setBorder(null);
-        txtDob.setColumns(10); 
-		txtDob.setBounds(174, 123, 319, 29);
-		add(txtDob);
 		
 		txtSin = new JTextField();
 		txtSin.setSelectionColor(new Color(255, 128, 128));
@@ -128,14 +135,6 @@ public class AddEmployeeView extends JPanel {
 		txtAddres.setBounds(174, 194, 319, 23);
 		add(txtAddres);
 		
-		JFormattedTextField txtHireDate = new JFormattedTextField((Format) null);
-		txtHireDate.setToolTipText("yyyy-MM-dd");
-		txtHireDate.setText("yyyy-mm-dd");
-		txtHireDate.setColumns(10);
-		txtHireDate.setBorder(null);
-		txtHireDate.setBounds(174, 228, 319, 29);
-		add(txtHireDate);
-		
 		txtEmail = new JTextField();
 		txtEmail.setSelectionColor(new Color(255, 128, 128));
 		txtEmail.setFont(new Font("Bell MT", Font.PLAIN, 12));
@@ -144,27 +143,181 @@ public class AddEmployeeView extends JPanel {
 		txtEmail.setBounds(174, 262, 319, 23);
 		add(txtEmail);
 		
-		JComboBox cmbRole = new JComboBox();
+		cmbRole = new JComboBox();
 		cmbRole.setModel(new DefaultComboBoxModel(new String[] {"Employee", "Manager"}));
 		cmbRole.setBounds(172, 295, 167, 22);
 		add(cmbRole);
 		
-		JComboBox cmbType = new JComboBox();
+		cmbType = new JComboBox();
 		cmbType.setModel(new DefaultComboBoxModel(new String[] {"Full - Time", "Part - Time"}));
 		cmbType.setBounds(172, 322, 167, 22);
 		add(cmbType);
 		
-		JButton btnSaveEmp = new JButton("Save");
-		btnSaveEmp.setToolTipText("Add new employee");
-		btnSaveEmp.setBorder(null);
-		btnSaveEmp.setBounds(174, 381, 107, 29);
-		add(btnSaveEmp);
+		 // button customization
+		btnSaveEmp = new JButton("Save");
+        btnSaveEmp.setBackground(new Color(0, 153, 102)); 
+        btnSaveEmp.setForeground(Color.WHITE); 
+        btnSaveEmp.setFont(new Font("Bell MT", Font.PLAIN, 14));
+        btnSaveEmp.setFocusPainted(false);
+        btnSaveEmp.setBorder(null);
+        btnSaveEmp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); 
+        btnSaveEmp.setBounds(203, 421, 122, 35); 
+        add(btnSaveEmp);
 		
-		JButton btnClear = new JButton("Clear");
+		btnClear = new JButton("Clear");
 		btnClear.setToolTipText("Reset");
-		btnClear.setBorder(null);
-		btnClear.setBounds(386, 384, 107, 29);
+		btnClear.setBounds(377, 421, 116, 35);
+		btnClear.setBackground(new Color(64, 0, 0)); 
+		btnClear.setForeground(Color.WHITE); 
+        btnClear.setFont(new Font("Bell MT", Font.PLAIN, 14)); 
+        btnClear.setFocusPainted(false); 
+        btnClear.setBorder(null); // No border
+        btnClear.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(btnClear);
+		
+		
+		JLabel lblHourlyPayRate = new JLabel("Hourly Pay ");
+		lblHourlyPayRate.setForeground(new Color(0, 0, 64));
+		lblHourlyPayRate.setFont(new Font("Bell MT", Font.PLAIN, 12));
+		lblHourlyPayRate.setBounds(86, 356, 61, 23);
+		add(lblHourlyPayRate);
+		
+		
+		// (initial, min, max, step)
+		SpinnerNumberModel paySpinnerModel = new SpinnerNumberModel(16.55, 1.0, null, 0.1);  
+		paySpinner = new JSpinner(paySpinnerModel);
+		paySpinner.setEditor(new JSpinner.NumberEditor(paySpinner, "#.##"));
+		paySpinner.setFont(new Font("Bell MT", Font.PLAIN, 11));
+		paySpinner.setBounds(174, 355, 165, 20);
+		add(paySpinner);
+		
+		SpinnerDateModel dobModel = new SpinnerDateModel();
+		dobSpinner = new JSpinner(dobModel);
+		dobSpinner.setBounds(174, 127, 319, 20);
+		// Setting the date editor with the desired format
+		dobSpinner.setEditor(new JSpinner.DateEditor(dobSpinner, "MMM dd, yyyy"));
+		add(dobSpinner);
+
+	
+		SpinnerDateModel hireModel = new SpinnerDateModel();
+		hireDateSpinner = new JSpinner(hireModel);
+		hireDateSpinner.setEditor(new JSpinner.DateEditor(hireDateSpinner, "MMM dd, yyyy"));
+		hireDateSpinner.setBounds(174, 228, 319, 20);
+		add(hireDateSpinner);
+		
+		// sending the view to controller 
+		AddEmployeeController controller = new AddEmployeeController(this);
+		controller.empController();
 
 	}
+	
+	/**
+	 * method to add action listener to buttons
+	 */
+	
+	public void addSaveEmpAction(ActionListener a) {
+		getBtnSaveEmp().addActionListener(a);
+	}
+	
+	public void addClearAction(ActionListener a) {
+		getBtnClear().addActionListener(a);
+	}
+	
+	// Getters
+    public JTextField getTxtFname() {
+        return txtFname;
+    }
+
+    public JTextField getTxtLname() {
+        return txtLname;
+    }
+
+    public JTextField getTxtSin() {
+        return txtSin;
+    }
+
+    public JTextField getTxtAddres() {
+        return txtAddres;
+    }
+
+    public JTextField getTxtEmail() {
+        return txtEmail;
+    }
+
+    public JComboBox getCmbRole() {
+        return cmbRole;
+    }
+
+    public JComboBox getCmbType() {
+        return cmbType;
+    }
+
+    public JSpinner getPaySpinner() {
+        return paySpinner;
+    }
+
+    public JSpinner getHireDateSpinner() {
+        return hireDateSpinner;
+    }
+
+    public JSpinner getDobSpinner() {
+        return dobSpinner;
+    }
+
+    public JButton getBtnSaveEmp() {
+        return btnSaveEmp;
+    }
+
+    public JButton getBtnClear() {
+        return btnClear;
+    }
+
+    // Setters
+    public void setTxtFname(JTextField txtFname) {
+        this.txtFname = txtFname;
+    }
+
+    public void setTxtLname(JTextField txtLname) {
+        this.txtLname = txtLname;
+    }
+
+    public void setTxtSin(JTextField txtSin) {
+        this.txtSin = txtSin;
+    }
+
+    public void setTxtAddres(JTextField txtAddres) {
+        this.txtAddres = txtAddres;
+    }
+
+    public void setTxtEmail(JTextField txtEmail) {
+        this.txtEmail = txtEmail;
+    }
+
+    public void setCmbRole(JComboBox cmbRole) {
+        this.cmbRole = cmbRole;
+    }
+
+    public void setCmbType(JComboBox cmbType) {
+        this.cmbType = cmbType;
+    }
+
+    public void setPaySpinner(JSpinner paySpinner) {
+        this.paySpinner = paySpinner;
+    }
+
+    public void setHireDateSpinner(JSpinner hireDateSpinner) {
+        this.hireDateSpinner = hireDateSpinner;
+    }
+
+    public void setDobSpinner(JSpinner dobSpinner) {
+        this.dobSpinner = dobSpinner;
+    }
+
+    public void setBtnSaveEmp(JButton btnSaveEmp) {
+        this.btnSaveEmp = btnSaveEmp;
+    }
+
+    public void setBtnClear(JButton btnClear) {
+        this.btnClear = btnClear;
+    }
 }

@@ -11,7 +11,7 @@ import Controller.*;
 public class AddDepartmentModel {
   AddDepartmentView dv;
   ArrayList <Departments> deptUsers  = new ArrayList<Departments>();
-  ListDepartments deptRecord = new ListDepartments(); // list of department model
+  ListDepartmentsModel deptRecord = new ListDepartmentsModel(); // list of department model
   Departments deptData;
   public void addArray(AddDepartmentView dv)
   {

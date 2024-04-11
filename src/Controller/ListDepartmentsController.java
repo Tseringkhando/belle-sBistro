@@ -13,7 +13,7 @@ import View.*;
 
 public class ListDepartmentsController {
 	ListDepartmentsView view;
-	ListDepartments model;
+	ListDepartmentsModel model;
 	AddDepartmentModel addDeptModel;
 	Departments deptData;
 	
@@ -25,7 +25,7 @@ public class ListDepartmentsController {
 	
 	public void viewLists()
 	{
-		model = new ListDepartments();
+		model = new ListDepartmentsModel();
 		JScrollPane scrollPane = model.getScrollPane();
 		view.setTable(model.getTable());
 		view.setScrollPane(scrollPane);

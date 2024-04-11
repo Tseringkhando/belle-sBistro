@@ -34,17 +34,6 @@ public class AddDepartmentController {
       }
     });
     
-//    //reset
-//    view.getResetButton().addActionListener(new ActionListener() {
-//      
-//      public void actionPerformed(ActionEvent e) {
-//        view.getDeptID().setText("");
-//        view.getDeptName().setText("");
-//        view.getUserName().setText("");
-//        view.getPassword().setText("");
-//        view.getWebAdd().setText("");
-//        
-//      }
-//    });
+    
   }
 }

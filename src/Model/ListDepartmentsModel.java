@@ -7,14 +7,14 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-public class ListDepartments {
+public class ListDepartmentsModel {
 	ArrayList<Departments> deptScroll = new ArrayList<Departments>();
 
 	DefaultTableModel tblDeptModel = new DefaultTableModel(0, 2);
 	private JTable tblDeptData=new JTable(tblDeptModel);
 	JScrollPane scrollPaneDept = new JScrollPane(tblDeptData);
 
-	public ListDepartments()
+	public ListDepartmentsModel()
 	{
 		sendDeptData();
 	}
