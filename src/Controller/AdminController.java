@@ -44,6 +44,15 @@ public class AdminController {
 			}
 		});
 	    
+	    // list employees
+	    view.addListEmployeesListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				view.listEmployeesView();
+				
+			}
+		});
 	    
 
 //	      view.addLecturer(new ActionListener() {

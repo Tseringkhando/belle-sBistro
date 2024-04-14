@@ -9,7 +9,7 @@ import javax.swing.table.TableColumnModel;
 public class ListEmployeesModel {
     ArrayList<Employees> employeeList = new ArrayList<>();
 
-    DefaultTableModel tblEmployeeModel = new DefaultTableModel(0, 8);
+    DefaultTableModel tblEmployeeModel = new DefaultTableModel(0, 11);
     private JTable tblEmployeeData = new JTable(tblEmployeeModel);
     JScrollPane scrollPaneEmployee = new JScrollPane(tblEmployeeData);
 
@@ -47,10 +47,10 @@ public class ListEmployeesModel {
             Employees obj;
             for (int i = 0; i < employeeList.size(); i++) {
                 obj = employeeList.get(i);
-                Object[] data = {obj.getFirstName(), obj.getLastName(), obj.getSin(), obj.getAddress(), obj.getEmail(), obj.getRole(), obj.getType(), obj.getDob(), obj.getHireDate(), obj.getHourlyPay()};
+                Object[] data = {obj.getEmpID(),obj.getFirstName(), obj.getLastName(), obj.getSin(), obj.getAddress(), obj.getEmail(), obj.getRole(), obj.getType(), obj.getDob(), obj.getHireDate(), obj.getHourlyPay()};
                 tblEmployeeModel.addRow(data);
             }
-            Object col[] = {"First Name", "Last Name", "SIN", "Address", "Email", "Role", "Type", "DOB", "Hire Date", "Hourly Pay"};
+            Object col[] = {"Emp ID","First Name", "Last Name", "SIN", "Address", "Email", "Role", "Type", "DOB", "Hire Date", "Hourly Pay"};
             tblEmployeeModel.setColumnIdentifiers(col);
             tblEmployeeData.setRowHeight(25);
             TableColumnModel cModel = tblEmployeeData.getColumnModel();

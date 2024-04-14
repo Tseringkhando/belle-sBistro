@@ -58,8 +58,6 @@ public class AddDepartmentModel {
     deptUsers.set(i,deptData);
     addDepartmentData();
     JOptionPane.showMessageDialog(null, "Updated Successfully");
-    System.out.println("suscess update");
-    
   }
 
   //delete department

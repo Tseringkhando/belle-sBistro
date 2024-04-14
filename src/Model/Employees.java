@@ -8,7 +8,7 @@ public class Employees implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	private int empID;
 	private String firstName, lastName, sin, address, email, role, type, dob, hireDate;
 	private double hourlyPay;
 
@@ -17,8 +17,9 @@ public class Employees implements Serializable {
     }
     
     // Parameterized constructor
-    public Employees(String fname, String lname, String newSin, String add, String newEmail, String newRole, String empType, String newDob, String newHireDate, double newHourlyPay) {
-        firstName = fname;
+    public Employees(int id,String fname, String lname, String newSin, String add, String newEmail, String newRole, String empType, String newDob, String newHireDate, double newHourlyPay) {
+        empID = id;
+    	firstName = fname;
         lastName = lname;
         sin = newSin;
         address = add;
@@ -31,6 +32,9 @@ public class Employees implements Serializable {
     }
 
     // Getters
+    public int getEmpID() {
+    	return empID;
+    }
     public String getFirstName() {
         return firstName;
     }
@@ -72,6 +76,11 @@ public class Employees implements Serializable {
     }
     
  // Setters
+    
+    public void setEmpID(int id) {
+		empID = id;
+	}
+    
     public void setFirstName(String newName) {
         firstName = newName;
     }

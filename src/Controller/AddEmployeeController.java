@@ -13,21 +13,23 @@ import java.util.regex.Pattern;
 public class AddEmployeeController {
     AddEmployeeView view;
     AddEmployeeModel model;
-
     public AddEmployeeController(AddEmployeeView v) {
         view = v;
-        empController();
     }
 
+
     public void empController() {
-    	model = new AddEmployeeModel(view);
+    	model = new AddEmployeeModel();
         // Save employee
         view.getBtnSaveEmp().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (validateInputs()) {
-                    model.addEmployee();
-                    resetFields();
-                }
+            
+            		if (validateInputs()) {
+                        model.addEmployee(view);
+                        resetFields();
+                    }
+            	    
+            
             }
         });
 
@@ -66,7 +68,7 @@ public class AddEmployeeController {
             return false;
         }
 
-        // Validate email
+        // Validate email using RegEx
         if (!Pattern.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", email)) {
             JOptionPane.showMessageDialog(view, "Invalid email format.");
             return false;
@@ -84,7 +86,7 @@ public class AddEmployeeController {
         }
 
         // Validate pay rate
-        if (payRate <= 0) {
+        if (payRate <= 0.0) {
             JOptionPane.showMessageDialog(view, "Pay rate must be greater than 0.");
             return false;
         }

@@ -36,7 +36,6 @@ public class AdminView extends JFrame {
 		getContentPane().setBackground(new Color(231, 231, 231));
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
-		//		setUndecorated(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -152,6 +151,9 @@ public class AdminView extends JFrame {
 	public void addEmployeeListener(ActionListener a){
 		btnAddEmployee.addActionListener(a);
 	}
+	public void addListEmployeesListener(ActionListener a) {
+		btnEmployees.addActionListener(a);
+	}
 	
 
 
@@ -192,5 +194,17 @@ public class AdminView extends JFrame {
 		jpContent.revalidate(); // Recalculate the layout
 		jpContent.repaint(); // Repaint the panel
 	}
-
+	
+	
+	public void listEmployeesView() {
+		jpContent.removeAll();
+		ListEmployeesView v = new ListEmployeesView();
+		v.setSize(jpContent.getSize()); // To set the size of the AddDepartmentView to match jpContent
+		v.setOpaque(false); // To keep the jpContent's bg 
+		// Add the new panel to jpContent
+		jpContent.add(v);
+		// Steps crucial for updating the UI
+		jpContent.revalidate(); // Recalculate the layout
+		jpContent.repaint(); // Repaint the panel
+	}
 }

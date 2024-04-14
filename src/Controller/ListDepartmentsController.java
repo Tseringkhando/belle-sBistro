@@ -36,7 +36,9 @@ public class ListDepartmentsController {
 	public void updateDepts(ListDepartmentsView view) {
 		
 		view.addActionUpdateDepartment(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("update button pressed");
 				addDeptModel = new AddDepartmentModel();
 				try {
 					addDeptModel.updateDepartment(view, view.getIndex());

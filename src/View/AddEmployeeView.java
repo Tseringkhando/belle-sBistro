@@ -20,6 +20,7 @@ import java.awt.Cursor;
 import javax.swing.SpinnerNumberModel;
 
 import Controller.AddEmployeeController;
+import Model.Employees;
 
 import javax.swing.SpinnerDateModel;
 import java.util.Date;
@@ -36,17 +37,17 @@ public class AddEmployeeView extends JPanel {
 	private JButton btnSaveEmp, btnClear;
 	private JComboBox cmbRole, cmbType;
 	private JSpinner paySpinner, hireDateSpinner, dobSpinner;
-
+	private JLabel lblTitle ;
 	/**
 	 * Create the panel.
 	 */
 	public AddEmployeeView() {
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Add New Employee");
-		lblNewLabel.setFont(new Font("Bell MT", Font.PLAIN, 14));
-		lblNewLabel.setBounds(253, 26, 138, 14);
-		add(lblNewLabel);
+		lblTitle= new JLabel("Add New Employee");
+		lblTitle.setFont(new Font("Bell MT", Font.PLAIN, 14));
+		lblTitle.setBounds(253, 26, 138, 14);
+		add(lblTitle);
 		
 		JLabel lblFname = new JLabel("First Name");
 		lblFname.setForeground(new Color(0, 0, 64));
@@ -77,7 +78,7 @@ public class AddEmployeeView extends JPanel {
 		lblAddress.setFont(new Font("Bell MT", Font.PLAIN, 12));
 		lblAddress.setBounds(86, 193, 76, 23);
 		add(lblAddress);
-		
+	
 		JLabel lblRole = new JLabel("Role");
 		lblRole.setForeground(new Color(0, 0, 64));
 		lblRole.setFont(new Font("Bell MT", Font.PLAIN, 12));
@@ -174,6 +175,7 @@ public class AddEmployeeView extends JPanel {
         btnClear.setBorder(null); // No border
         btnClear.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		add(btnClear);
+	
 		
 		
 		JLabel lblHourlyPayRate = new JLabel("Hourly Pay ");
@@ -208,7 +210,6 @@ public class AddEmployeeView extends JPanel {
 		// sending the view to controller 
 		AddEmployeeController controller = new AddEmployeeController(this);
 		controller.empController();
-
 	}
 	
 	/**
@@ -271,8 +272,13 @@ public class AddEmployeeView extends JPanel {
     public JButton getBtnClear() {
         return btnClear;
     }
-
+    
+    public JLabel getLblTitle() {
+    	return lblTitle;
+    }
     // Setters
+    
+   
     public void setTxtFname(JTextField txtFname) {
         this.txtFname = txtFname;
     }
