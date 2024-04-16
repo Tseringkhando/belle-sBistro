@@ -1,19 +1,25 @@
 package Model;
 
-import java.io.*;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import javax.swing.*;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-public class ListEmployeesModel {
-    ArrayList<Employees> employeeList = new ArrayList<>();
+public class ListManagersModel {
+    private ArrayList<Employees> employeeList = new ArrayList<>();
 
-    DefaultTableModel tblEmployeeModel = new DefaultTableModel(0, 11);
-    private JTable tblEmployeeData = new JTable(tblEmployeeModel);
-    JScrollPane scrollPaneEmployee = new JScrollPane(tblEmployeeData);
+    private DefaultTableModel tblEmployeeModel = new DefaultTableModel(0, 11);
+    private JTable tblManagerData = new JTable(tblEmployeeModel);
+    private JScrollPane scrollPaneManagers = new JScrollPane(tblManagerData);
 
-    public ListEmployeesModel() {
+    public ListManagersModel() {
         sendEmployeeData();
     }
 
@@ -47,20 +53,25 @@ public class ListEmployeesModel {
             Employees obj;
             for (int i = 0; i < employeeList.size(); i++) {
                 obj = employeeList.get(i);
+                if(obj.getRole().equals("Manager"))
+                {                
                 Object[] data = {obj.getEmpID(),obj.getFirstName(), obj.getLastName(), obj.getSin(), obj.getAddress(), obj.getEmail(), obj.getRole(), obj.getType(), obj.getDob(), obj.getHireDate(), obj.getHourlyPay()};
-                tblEmployeeModel.addRow(data);
+                tblEmployeeModel.addRow(data); //
+                }
             }
             Object col[] = {"Emp ID","First Name", "Last Name", "SIN", "Address", "Email", "Role", "Type", "DOB", "Hire Date", "Hourly Pay"};
             tblEmployeeModel.setColumnIdentifiers(col);
-            tblEmployeeData.setRowHeight(25);
+            tblManagerData.setRowHeight(25);
         }
     }
 
     public JScrollPane getScrollPane() {
-        return scrollPaneEmployee;
+        return scrollPaneManagers;
     }
 
     public JTable getTable() {
-        return tblEmployeeData;
+        return tblManagerData;
     }
+	
+	
 }

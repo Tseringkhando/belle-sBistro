@@ -45,7 +45,7 @@ public class AdminView extends JFrame {
 		jpSideBar = new JPanel();
 		jpSideBar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		jpSideBar.setBackground(new Color(183, 9, 21));
-		jpSideBar.setBounds(0, 0, 257, 665);
+		jpSideBar.setBounds(0, 0, 234, 665);
 		contentPane.add(jpSideBar);
 		jpSideBar.setLayout(null);
 
@@ -57,7 +57,7 @@ public class AdminView extends JFrame {
 		btnHome.setFocusPainted(false);
 		btnHome.setFont(new Font("Bell MT", Font.PLAIN, 14));
 		btnHome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnHome.setBounds(0, 156, 257, 40);
+		btnHome.setBounds(-13, 156, 257, 40);
 		jpSideBar.add(btnHome);
 
 		btnManagers = new JButton("Managers");
@@ -68,7 +68,7 @@ public class AdminView extends JFrame {
 		btnManagers.setFocusPainted(false);
 		btnManagers.setContentAreaFilled(false);
 		btnManagers.setBorderPainted(false);
-		btnManagers.setBounds(0, 197, 257, 40);
+		btnManagers.setBounds(-13, 197, 257, 40);
 		jpSideBar.add(btnManagers);
 
 		btnDepartments = new JButton("Departments");
@@ -79,7 +79,7 @@ public class AdminView extends JFrame {
 		btnDepartments.setFocusPainted(false);
 		btnDepartments.setContentAreaFilled(false);
 		btnDepartments.setBorderPainted(false);
-		btnDepartments.setBounds(0, 236, 257, 40);
+		btnDepartments.setBounds(-13, 236, 257, 40);
 		jpSideBar.add(btnDepartments);
 
 		btnEmployees = new JButton("Employees");
@@ -90,7 +90,7 @@ public class AdminView extends JFrame {
 		btnEmployees.setFocusPainted(false);
 		btnEmployees.setContentAreaFilled(false);
 		btnEmployees.setBorderPainted(false);
-		btnEmployees.setBounds(0, 276, 257, 40);
+		btnEmployees.setBounds(-13, 276, 257, 40);
 		jpSideBar.add(btnEmployees);
 
 		btnLogout = new JButton("Log Out");
@@ -101,7 +101,7 @@ public class AdminView extends JFrame {
 		btnLogout.setFont(new Font("Bell MT", Font.PLAIN, 14));
 		btnLogout.setFocusPainted(false);
 		btnLogout.setBorderPainted(false);
-		btnLogout.setBounds(0, 498, 257, 40);
+		btnLogout.setBounds(-13, 499, 257, 40);
 		jpSideBar.add(btnLogout);
 
 		btnAddEmployee = new JButton("Add Employee");
@@ -111,7 +111,7 @@ public class AdminView extends JFrame {
 		btnAddEmployee.setFocusPainted(false);
 		btnAddEmployee.setContentAreaFilled(false);
 		btnAddEmployee.setBorderPainted(false);
-		btnAddEmployee.setBounds(0, 316, 257, 40);
+		btnAddEmployee.setBounds(-13, 316, 257, 40);
 		jpSideBar.add(btnAddEmployee);
 
 		btnAddDepartment = new JButton("Add Department");
@@ -122,12 +122,12 @@ public class AdminView extends JFrame {
 		btnAddDepartment.setFocusPainted(false);
 		btnAddDepartment.setContentAreaFilled(false);
 		btnAddDepartment.setBorderPainted(false);
-		btnAddDepartment.setBounds(0, 356, 257, 40);
+		btnAddDepartment.setBounds(-13, 356, 257, 40);
 
 		jpSideBar.add(btnAddDepartment);
 
 		jpContent = new JPanel();
-		jpContent.setBounds(258, 0, 630, 665);
+		jpContent.setBounds(233, 0, 655, 665);
 		contentPane.add(jpContent);
 
 		jpContent.setLayout(null);
@@ -154,6 +154,10 @@ public class AdminView extends JFrame {
 	public void addListEmployeesListener(ActionListener a) {
 		btnEmployees.addActionListener(a);
 	}
+	public void addListManagerListener(ActionListener a) {
+		btnManagers.addActionListener(a);
+	}
+	
 	
 
 
@@ -199,6 +203,18 @@ public class AdminView extends JFrame {
 	public void listEmployeesView() {
 		jpContent.removeAll();
 		ListEmployeesView v = new ListEmployeesView();
+		v.setSize(jpContent.getSize()); // To set the size of the AddDepartmentView to match jpContent
+		v.setOpaque(false); // To keep the jpContent's bg 
+		// Add the new panel to jpContent
+		jpContent.add(v);
+		// Steps crucial for updating the UI
+		jpContent.revalidate(); // Recalculate the layout
+		jpContent.repaint(); // Repaint the panel
+	}
+	
+	public void listManagersView() {
+		jpContent.removeAll();
+		ListManagersView v = new ListManagersView();
 		v.setSize(jpContent.getSize()); // To set the size of the AddDepartmentView to match jpContent
 		v.setOpaque(false); // To keep the jpContent's bg 
 		// Add the new panel to jpContent

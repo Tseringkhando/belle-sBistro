@@ -57,7 +57,6 @@ public class ListDepartmentsModel {
 			Object col[]= {"Dept ID","Name",};
 			tblDeptModel.setColumnIdentifiers(col);
 			tblDeptData.setRowHeight(25);
-			TableColumnModel cModel = tblDeptData.getColumnModel();
 
 		}
 	}

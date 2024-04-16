@@ -55,12 +55,12 @@ public class AdminController {
 		});
 	    
 
-//	      view.addLecturer(new ActionListener() {
-//
-//	        public void actionPerformed(ActionEvent e)
-//	        {view.lecturerView();}
-//	        
-//	      });
+	      view.addListManagerListener(new ActionListener() {
+
+	        public void actionPerformed(ActionEvent e)
+	        {view.listManagersView();}
+	        
+	      });
 //
 //
 //	    view.gotoHome(new ActionListener() {
