@@ -43,7 +43,8 @@ public class ListEmployeesController {
 			public void actionPerformed(ActionEvent e) {
 				addEmpModel = new AddEmployeeModel();
 				try {
-					addEmpModel.updateEmployee(view, view.getIndex()-1);
+					addEmpModel.updateEmployee(view, view.getIndex());
+					System.out.println(view.getIndex()+ ", "+ (view.getIndex()));
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				} catch (IOException e1) {

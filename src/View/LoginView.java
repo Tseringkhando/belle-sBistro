@@ -12,6 +12,7 @@ import javax.swing.border.*;
 public class LoginView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	ImageIcon icon = new ImageIcon("login.png");
 	private GradientPanel contentPane;
 	private JPanel jpTop, jpContent;
 	private JLabel lblTitle, userIconLabel, lblUsername, lblPassword;
@@ -25,6 +26,7 @@ public class LoginView extends JFrame {
      * Initializes the frame, sets its bounds, and adds all necessary components.
      */
 	public LoginView() {
+		setIconImage(icon.getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 745, 467);
 

@@ -103,7 +103,7 @@ public class AddEmployeeModel {
    */
   public void updateEmployee(ListEmployeesView dv, int i) throws FileNotFoundException, IOException {
     loadEmployeeData();  
-    employeeObj = new Employees(dv.getIndex(),dv.getTxtFname().getText(),
+    employeeObj = new Employees(dv.getEmpid(),dv.getTxtFname().getText(),
         dv.getTxtLname().getText(),
         dv.getTxtSin().getText(),
         dv.getTxtAddres().getText(),

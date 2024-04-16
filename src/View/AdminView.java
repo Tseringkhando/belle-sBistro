@@ -24,7 +24,7 @@ import javax.swing.JMenu;
 public class AdminView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	ImageIcon icon = new ImageIcon("icon.jpg");
+	ImageIcon icon = new ImageIcon("appicon.jpg");
 	private JPanel contentPane, jpSideBar, jpContent;
 	private JButton btnHome, btnDepartments, btnManagers, btnEmployees, btnAddEmployee, btnAddDepartment, btnLogout, btnCredentials;
 	private JLabel lblNewLabel;
@@ -34,7 +34,7 @@ public class AdminView extends JFrame {
 	 * Create the frame.
 	 */
 	public AdminView() {
-		setTitle("Belle's System");
+		setTitle("Belle's Bistro - Management");
 		setIconImage(icon.getImage());
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -16,7 +16,7 @@ public class ListEmployeesView extends JPanel {
   private static final long serialVersionUID = 1L;
   private JTable tblEmployees;
   private JScrollPane scrollPaneEmployees;
-  private int indexArray;
+  private int indexArray, empId;
   private Employees employees;
   private JTextField txtFname;
   private JTextField txtLname;
@@ -301,6 +301,15 @@ public JButton getBtnDelete() {
 	return btnDelete;
 }
 
+private void setEmpID(int id) {
+	empId = id;
+
+}
+
+public int getEmpid() {
+	return empId;
+}
+
   /**
    * This method lets user to get the full details of employee and update it
    * specifically done by Tsering
@@ -310,9 +319,9 @@ public JButton getBtnDelete() {
     int selectedRow = tblEmployees.getSelectedRow();
 
     if (selectedRow >= 0) {
+    	indexArray = selectedRow;
       // all rows
-      int empID = Integer.parseInt(tblEmployees.getValueAt(selectedRow, 0).toString());
-      indexArray = empID;
+      empId = Integer.parseInt(tblEmployees.getValueAt(selectedRow, 0).toString());
       String firstName = tblEmployees.getValueAt(selectedRow, 1).toString();
       String lastName = tblEmployees.getValueAt(selectedRow, 2).toString();
       String sin = tblEmployees.getValueAt(selectedRow, 3).toString();
