@@ -44,6 +44,9 @@ public class ListEmployeesController {
 				addEmpModel = new AddEmployeeModel();
 				try {
 					addEmpModel.updateEmployee(view, view.getIndex());
+					model.refreshTableModel(); // Refresh the table model
+	                view.getScrollPane().revalidate();
+	                view.getScrollPane().repaint();
 					System.out.println(view.getIndex()+ ", "+ (view.getIndex()));
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();

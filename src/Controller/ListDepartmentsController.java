@@ -34,21 +34,24 @@ public class ListDepartmentsController {
 	}
 	// update department
 	public void updateDepts(ListDepartmentsView view) {
-		
-		view.addActionUpdateDepartment(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				addDeptModel = new AddDepartmentModel();
-				try {
-					addDeptModel.updateDepartment(view, view.getIndex());
-				} catch (FileNotFoundException e1) {
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
+	    view.addActionUpdateDepartment(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            addDeptModel = new AddDepartmentModel();
+	            try {
+	                addDeptModel.updateDepartment(view, view.getIndex());
+	                model.refreshTableModel(); // Refresh the table model
+	                view.getPane().revalidate();
+	                view.getPane().repaint();
+	                JOptionPane.showMessageDialog(null, "Updated Successfully");
+	            } catch (FileNotFoundException e1) {
+	                e1.printStackTrace();
+	            } catch (IOException e1) {
+	                e1.printStackTrace();
+	            }
+	        }
+	    });
 	}
+
 	
 	//delete data
 	public void deleteDept(ListDepartmentsView v)
@@ -60,7 +63,9 @@ public class ListDepartmentsController {
 			}
 		});
 	}
-
+	
+	
+	
 }
 	
 

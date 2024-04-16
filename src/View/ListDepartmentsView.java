@@ -18,6 +18,7 @@ import java.awt.Color;
 public class ListDepartmentsView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	
 	private JTable tblDept;
 	JScrollPane scrollPaneDept;
 	private JTextField txtDeptID;
@@ -97,6 +98,7 @@ public class ListDepartmentsView extends JPanel {
 		c.deleteDept(this);
 	}
 
+	
 	// getters and setters for scrollpane and table as the data are pulled from model
 	public void setScrollPane(JScrollPane js) {
 		scrollPaneDept = js;

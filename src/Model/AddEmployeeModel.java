@@ -116,6 +116,7 @@ public class AddEmployeeModel {
     if (i >= 0 && i < employeeArray.size()) {
       employeeArray.set(i, employeeObj);
       saveEmployeeData();
+      listEmployeesModel.refreshTableModel();
       JOptionPane.showMessageDialog(null, "Updated Successfully");
     } else {
       JOptionPane.showMessageDialog(null, "Invalid employee index", "Error", JOptionPane.ERROR_MESSAGE);

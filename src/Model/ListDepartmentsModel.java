@@ -60,6 +60,12 @@ public class ListDepartmentsModel {
 
 		}
 	}
+	
+	public void refreshTableModel() {
+	    tblDeptModel.setRowCount(0); // Clear all rows
+	    sendDeptData(); // Repopulate table model with updated data
+	}
+	
 	public JScrollPane getScrollPane()
 	{
 		return scrollPaneDept;

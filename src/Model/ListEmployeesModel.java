@@ -55,7 +55,12 @@ public class ListEmployeesModel {
             tblEmployeeData.setRowHeight(25);
         }
     }
-
+    
+	public void refreshTableModel() {
+		tblEmployeeModel.setRowCount(0); // Clear all rows
+	    sendEmployeeData(); // Repopulate table model with updated data
+	}
+	
     public JScrollPane getScrollPane() {
         return scrollPaneEmployee;
     }

@@ -61,9 +61,13 @@ public class AddDepartmentModel {
     deptUsers=  deptRecord.getArrays();
     deptData= new Departments(dv.getID(), dv.getName());
     deptUsers.set(i,deptData);
-    addDepartmentData();
+    addDepartmentData(); // Save updated department list to file
+    deptRecord.refreshTableModel(); // Refresh the table model to reflect changes
+    
     JOptionPane.showMessageDialog(null, "Updated Successfully");
   }
+  
+  
 
   //delete department
   public void deleteDept(ListDepartmentsView dv,int i) {
