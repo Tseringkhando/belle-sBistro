@@ -218,12 +218,16 @@ public class ListEmployeesView extends JPanel {
 
     setVisible(true);
     controller.updateEmployeeData(this);
+    controller.deleteEmp(this);
     
-   
   }
 
   public void addUpdateEmpListener(ActionListener a) {
     btnUpdate.addActionListener(a);
+  }
+  public void addDeleteEmpListener(ActionListener a)
+  {
+    btnDelete.addActionListener(a);
   }
   public JTable getEmpTable() {
     return tblEmployees;

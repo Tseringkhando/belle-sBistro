@@ -6,7 +6,7 @@ public class Users implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String username, role;
-	private char[] password; 
+	private char[] password;
 
 	public Users(String user, char[] pw, String rl) { 
 		username = user; 

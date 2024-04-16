@@ -7,22 +7,32 @@ import javax.swing.JOptionPane;
 
 import Model.Login;
 import View.*;
-
+/**
+ * Handles the login interactions between the login view and the login model.
+ * Responsible for initiating and validating user authentication processes.
+ */
 public class LoginController {
 	LoginView view;
 	Login model;
-
-	 public LoginController(LoginView vw, Login mdl)  {   
+	/**
+	 * Constructs a LoginController with a specific view and model.
+	 *
+	 * @param vw The view that provides the user interface for login.
+	 * @param mdl The model that handles the business logic of login authentication.
+	 */
+	public LoginController(LoginView vw, Login mdl)  {   
 		view=vw;
 		model=mdl;
 	}
 
-//the functionality of the login button is here
-	 
+	/**
+	 * Handles login attempts when the login button is pressed. 
+	 * It fetches user inputs, validates them, and processes the login based on user type.
+	 */
 	public void loginData() {
 		System.out.println("Controller worked");
 		view.addActionToBtn(new ActionListener () {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(view.getUsername());
 				if(view.getUserType().getSelectedItem().equals("Admin"))
@@ -30,32 +40,20 @@ public class LoginController {
 					model.setType("AD");
 					model.loginAdmin();
 					if(model.verify(view.getUsername(), view.getUserPassword())) {
-							view.dispose();
-								AdminView adminView = new AdminView();
-								adminView.setVisible(true);
-								AdminController adminController= new AdminController(adminView);
-								adminController.checkbutton();
-								System.out.println("Logged in Successfully.");
-				}
+						view.dispose();
+						AdminView adminView = new AdminView();
+						adminView.setVisible(true);
+						AdminController adminController= new AdminController(adminView);
+						adminController.checkbutton();
+						System.out.println("Logged in Successfully.");
+					}
 					else {
 						JOptionPane.showMessageDialog(null, "Username or Password Incorrect!");
 					}
-				 
-				
+
 				}
 				if(view.getUserType().getSelectedItem().equals("Department Secretary")) {
 					model.setType("DS");
-//					if(model.loginDepartment(view)) {
-//						view.dispose();
-////						DepartmentView v= new DepartmentView();
-////						v.setVisible(true);
-////						DepartmentController c = new DepartmentController(v);
-////						c.checkbutton();
-//				}
-//					else {
-//						JOptionPane.showMessageDialog(null, "Username or Password Incorrect!");
-//					}
-					
 				}
 			}
 		});

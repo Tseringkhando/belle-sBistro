@@ -35,7 +35,7 @@ public class ListEmployeesController {
 
 	}
 
-	// update department
+	// update employee
 	public void updateEmployeeData(ListEmployeesView view) {
 		view.addUpdateEmpListener(new ActionListener() {
 
@@ -52,6 +52,19 @@ public class ListEmployeesController {
 			}
 		});
 	}
+	
+	// delete emp
+		public void deleteEmp(ListEmployeesView v)
+		{
+			v.addDeleteEmpListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					addEmpModel = new AddEmployeeModel();
+					addEmpModel.deleteEmp(v, v.getIndex()-1);
+				}
+			});
+		}
+	
+	
 
 
 

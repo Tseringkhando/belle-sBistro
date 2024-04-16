@@ -1,113 +1,114 @@
 package Model;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
-import View.LoginView;
+/**
+ * Represents the login mechanism for different types of users and manages user credentials.
+ */
 public class Login {
-	private String username, type;
-	private char[] password;
-	private String file;
-	
-//	for department login
-	ArrayList<Departments> deps = new ArrayList<Departments>();
+    private String username;
+    private char[] password;
+    private String type;
+    private String file; // Filename where user data is stored.
 
-	public Login() {
-		
-	}
-	
-	public void loginAdmin()
-	{
-		try {
-			FileInputStream fis = new FileInputStream("users.dat");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			Users obj = null;
-			while ((obj=(Users)ois.readObject())!=null)
-			{  
-				setUserName(obj.getUsername());
-				setPassword(obj.getPassword());
-			}        
-			ois.close(); 
+    /**
+     * Loads administrator credentials from a data file.
+     */
+    public void loginAdmin() {
+        try {
+            FileInputStream fis = new FileInputStream("users.dat");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Users obj;
+            while ((obj = (Users) ois.readObject()) != null) {
+                setUsername(obj.getUsername());
+                setPassword(obj.getPassword());
+            }
+            ois.close();
+        } catch (Exception e) {
+            e.printStackTrace(); // Log or handle the exception as needed
+        }
+    }
 
-		}catch (Exception e) {
-		}
-	}
-	
-//	public boolean loginDepartment(LoginView lv)
-//	{
-//		boolean login= false;
-//		ArrayList<Departments> dprt = null;
-//		try {
-//			FileInputStream fis = new FileInputStream("records/departments.dat");
-//			ObjectInputStream ois = new ObjectInputStream(fis);
-//			Object o= ois.readObject();
-//			dprt = (ArrayList<Departments>)o;
-//		
-//			for (int i = 0; i < dprt.size(); i++) {
-//				setUserName(dprt.get(i).getUserName());
-//				setPassword(dprt.get(i).getPassword());
-//				if(login=verify(lv.getUsername(),lv.getUserPassword()))
-//					break;	
-//			}
-//			ois.close(); 
-//
-//		}catch (Exception e) {
-//		}
-//	return login;
-//	}
+    /**
+     * Verifies if the provided username and password match the stored credentials.
+     * 
+     * @param username The username to verify.
+     * @param password The password to verify.
+     * @return true if the credentials match, false otherwise.
+     */
+    public boolean verify(String username, char[] password) {
+        if (this.username.equals(username) && Arrays.equals(this.password, password)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    /**
+     * Sets the file path for storing or retrieving user data.
+     * @param file the path to the file.
+     */
+    public void setUserFile(String file) {
+        this.file = file;
+    }
 
+    /**
+     * Gets the file path used for storing or retrieving user data.
+     * @return the path to the file.
+     */
+    public String getFile() {
+        return file;
+    }
 
+    /**
+     * Sets the username for the user.
+     * @param username the username to set.
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	//checking user entered correct credentials or not
-	public boolean verify(String username, char[] password) {
-		String u= getUsername();
-		char[] p = getPassword();
-		if(u.equals(username)) {
-			if(Arrays.equals(p,password)) {
-				return true;
-			}
-			else 
-				return false;
-		}
-		else
-			return false;
+    /**
+     * Gets the stored username.
+     * @return the username.
+     */
+    public String getUsername() {
+        return this.username;
+    }
 
-	}
+    /**
+     * Sets the password for the user.
+     * 
+     * @param password the password to set.
+     */
+    public void setPassword(char[] password) {
+        this.password = password;
+    }
 
-	//setter methods
+    /**
+     * Gets the stored password.
+     * @return the password.
+     */
+    public char[] getPassword() {
+        return this.password;
+    }
 
-	public void setUserFile(String file) {
-		this.file= file;	
-	}
-	public String getFile() {
-		return file;	
-	}
+    /**
+     * Sets the type of the user (e.g., Admin, User).
+     * 
+     * @param type the type to set.
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
 
-
-	public void setUserName(String username) {
-		this.username= username;
-	}
-
-	public void setPassword(char[] password) {
-		this.password = password;
-	}
-
-	public String getUsername() {
-		return this.username;
-	}
-
-	public char[] getPassword() {
-		return this.password;
-	}
-	public void setType(String type) {
-		this.type=type;
-	}
-
-	public String getType() {
-		return this.type; }
-
-
-
+    /**
+     * Gets the type of the user.
+     * 
+     * @return the type.
+     */
+    public String getType() {
+        return this.type;
+    }
 }

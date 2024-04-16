@@ -13,26 +13,31 @@ public class AddDepartmentModel {
   ArrayList <Departments> deptUsers  = new ArrayList<Departments>();
   ListDepartmentsModel deptRecord = new ListDepartmentsModel(); // list of department model
   Departments deptData;
-  public void addArray(AddDepartmentView dv)
-  {
-	  
-    deptData = new Departments(dv.getDeptID().getText(), dv.getDeptName().getText());
-//    Checking for existing data before adding new departments
-    if(deptRecord.getArrays()!=null) {
-    	
-      deptUsers= deptRecord.getArrays();
-      deptUsers.add(deptData);
-      addDepartmentData(); 
-      JOptionPane.showMessageDialog(null, "Department Added");
-    }
-    else {
-
-      deptUsers.add(deptData);
-      addDepartmentData(); 
-      JOptionPane.showMessageDialog(null, "Department Added");
-    }
-
+  public void addArray(AddDepartmentView dv) {
+      if (!deptIdExists(dv.getDeptID().getText())) {
+          Departments deptData = new Departments(dv.getDeptID().getText(), dv.getDeptName().getText());
+          deptUsers.add(deptData);
+          addDepartmentData();
+          JOptionPane.showMessageDialog(null, "Department Added");
+      } else {
+          JOptionPane.showMessageDialog(null, "Department code already exists!", "Error", JOptionPane.ERROR_MESSAGE);
+      }
   }
+  
+  
+  public boolean deptIdExists(String id) {
+      if (deptRecord.getArrays() != null) {
+          deptUsers = deptRecord.getArrays();
+          for (Departments dept : deptUsers) {
+              if (dept.getDeptID().equals(id)) {
+                  return true;
+              }
+          }
+      }
+      return false;
+  }
+  
+  
   public void addDepartmentData() 
   {
     try {

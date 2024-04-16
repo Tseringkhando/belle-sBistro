@@ -15,13 +15,18 @@ import java.awt.event.ActionListener;
 import java.util.function.ToDoubleBiFunction;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JMenu;
 
 public class AdminView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane, jpSideBar, jpContent;
-	private JButton btnHome, btnDepartments, btnManagers, btnEmployees, btnAddEmployee, btnAddDepartment, btnLogout;
+	private JButton btnHome, btnDepartments, btnManagers, btnEmployees, btnAddEmployee, btnAddDepartment, btnLogout, btnCredentials;
 	private JLabel lblNewLabel;
+	private JMenuItem mntmExit ;
 
 	/**
 	 * Create the frame.
@@ -36,9 +41,22 @@ public class AdminView extends JFrame {
 		getContentPane().setBackground(new Color(231, 231, 231));
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
+
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+
+		JMenu mnNewMenu = new JMenu("Home");
+		menuBar.add(mnNewMenu);
+
+		mntmExit = new JMenuItem("Exit");
+		mnNewMenu.add(mntmExit);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				confirmAndExit();
+			}
+		});
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -59,6 +77,14 @@ public class AdminView extends JFrame {
 		btnHome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnHome.setBounds(-13, 156, 257, 40);
 		jpSideBar.add(btnHome);
+		btnHome.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				homeScreen();
+
+			}
+		});
 
 		btnManagers = new JButton("Managers");
 		btnManagers.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -126,6 +152,7 @@ public class AdminView extends JFrame {
 
 		jpSideBar.add(btnAddDepartment);
 
+
 		jpContent = new JPanel();
 		jpContent.setBounds(233, 0, 655, 665);
 		contentPane.add(jpContent);
@@ -135,12 +162,14 @@ public class AdminView extends JFrame {
 		lblNewLabel = new JLabel("You are logged in as Admin");
 		lblNewLabel.setBounds(270, 207, 235, 48);
 		jpContent.add(lblNewLabel);
+
 	}
 
 	/**
 	 *  methods created to add eventlistner to buttons
 	 * @param ActionListener
 	 */
+
 	public void addViewDeptListener(ActionListener a) {
 		btnDepartments.addActionListener(a);
 	}
@@ -157,70 +186,102 @@ public class AdminView extends JFrame {
 	public void addListManagerListener(ActionListener a) {
 		btnManagers.addActionListener(a);
 	}
-	
-	
+	public void addLogOutListener(ActionListener a) {btnLogout.addActionListener(a);}
 
 
-	public void addDepartmentView()
-	{
+
+	/**
+	 * Switches to the 'Add Department' view.
+	 */
+	public void addDepartmentView() {
+		// Clear the current view
 		jpContent.removeAll();
+		// Initialize and configure the new 'Add Department' view
 		AddDepartmentView v = new AddDepartmentView();
-		v.setSize(jpContent.getSize()); // To set the size of the AddDepartmentView to match jpContent
-		v.setOpaque(false); // To keep the jpContent's bg 
-		// Add the new panel to jpContent
-		jpContent.add(v);
-		// Steps crucial for updating the UI
-		jpContent.revalidate(); // Recalculate the layout
-		jpContent.repaint(); // Repaint the panel
+		configureAndAddView(v);
 	}
-	
-	
+
+	/**
+	 * Switches to the 'List Departments' view.
+	 */
 	public void listDepartmentView() {
 		jpContent.removeAll();
 		ListDepartmentsView v = new ListDepartmentsView();
-		v.setSize(jpContent.getSize()); // To set the size of the AddDepartmentView to match jpContent
-		v.setOpaque(false); // To keep the jpContent's bg 
-		// Add the new panel to jpContent
-		jpContent.add(v);
-		// Steps crucial for updating the UI
-		jpContent.revalidate(); // Recalculate the layout
-		jpContent.repaint(); // Repaint the panel
+		configureAndAddView(v);
 	}
-	
+
+	/**
+	 * Switches to the 'Add Employee' view.
+	 */
 	public void addEmployeeView() {
 		jpContent.removeAll();
 		AddEmployeeView v = new AddEmployeeView();
-		v.setSize(jpContent.getSize()); // To set the size of the AddDepartmentView to match jpContent
-		v.setOpaque(false); // To keep the jpContent's bg 
-		// Add the new panel to jpContent
-		jpContent.add(v);
-		// Steps crucial for updating the UI
-		jpContent.revalidate(); // Recalculate the layout
-		jpContent.repaint(); // Repaint the panel
+		configureAndAddView(v);
 	}
-	
-	
+
+	/**
+	 * Switches to the 'List Employees' view.
+	 */
 	public void listEmployeesView() {
 		jpContent.removeAll();
 		ListEmployeesView v = new ListEmployeesView();
-		v.setSize(jpContent.getSize()); // To set the size of the AddDepartmentView to match jpContent
-		v.setOpaque(false); // To keep the jpContent's bg 
-		// Add the new panel to jpContent
-		jpContent.add(v);
-		// Steps crucial for updating the UI
-		jpContent.revalidate(); // Recalculate the layout
-		jpContent.repaint(); // Repaint the panel
+		configureAndAddView(v);
 	}
-	
+
+	/**
+	 * Switches to the 'List Managers' view.
+	 */
 	public void listManagersView() {
 		jpContent.removeAll();
 		ListManagersView v = new ListManagersView();
-		v.setSize(jpContent.getSize()); // To set the size of the AddDepartmentView to match jpContent
-		v.setOpaque(false); // To keep the jpContent's bg 
-		// Add the new panel to jpContent
-		jpContent.add(v);
-		// Steps crucial for updating the UI
-		jpContent.revalidate(); // Recalculate the layout
-		jpContent.repaint(); // Repaint the panel
+		configureAndAddView(v);
 	}
+
+	/**
+	 * Helper method to configure and add a view to the content panel.
+	 * @param v The view to be added to the content panel.
+	 */
+	private void configureAndAddView(JPanel v) {
+		v.setSize(jpContent.getSize()); // Set the view's size to match the content panel's size
+		v.setOpaque(false); // Ensure the view maintains the background properties of the content panel
+
+		// Add the view to the content panel and update the UI
+		jpContent.add(v);
+		jpContent.revalidate();
+		jpContent.repaint();
+	}
+
+	/**
+	 * Prompts the user with a confirmation dialog before exiting the application.
+	 * This method ensures that the user does not exit the application accidentally.
+	 */
+	private void confirmAndExit() {
+	    // Display a confirmation dialog to the user and capture their response
+	    int confirm = JOptionPane.showConfirmDialog(
+	            this,
+	            "Are you sure you want to exit?", // The text asking the user for confirmation
+	            "Exit Confirmation", // The title of the confirmation dialog
+	            JOptionPane.YES_NO_OPTION, // The options, which are Yes and No
+	            JOptionPane.QUESTION_MESSAGE // The type of message to be displayed
+	    );
+
+	    // Check the user's response
+	    if (confirm == JOptionPane.YES_OPTION) {
+	        System.exit(0); // Exit the application if the user confirms
+	    }
+	}
+	
+	/**
+	 * Displays the home screen of the application after a user successfully logs in.
+	 * The home screen includes a greeting message indicating the user is logged in as an admin.
+	 */
+	public void homeScreen() {
+		jpContent.removeAll();
+		lblNewLabel = new JLabel("You are logged in as Admin");
+		lblNewLabel.setBounds(270, 207, 235, 48);
+		jpContent.add(lblNewLabel);
+		jpContent.revalidate();
+		jpContent.repaint();
+	}
+
 }
