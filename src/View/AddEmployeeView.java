@@ -20,10 +20,12 @@ import java.awt.Cursor;
 import javax.swing.SpinnerNumberModel;
 
 import Controller.AddEmployeeController;
+import Model.DepartmentLoader;
 import Model.Employees;
 
 import javax.swing.SpinnerDateModel;
 import java.util.Date;
+import java.util.List;
 import java.util.Calendar;
 
 public class AddEmployeeView extends JPanel {
@@ -38,6 +40,8 @@ public class AddEmployeeView extends JPanel {
 	private JComboBox cmbRole, cmbType;
 	private JSpinner paySpinner, hireDateSpinner, dobSpinner;
 	private JLabel lblTitle ;
+	private JLabel lblDepartment;
+	private JComboBox cmbDept;
 	/**
 	 * Create the panel.
 	 */
@@ -162,12 +166,12 @@ public class AddEmployeeView extends JPanel {
         btnSaveEmp.setFocusPainted(false);
         btnSaveEmp.setBorder(null);
         btnSaveEmp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR)); 
-        btnSaveEmp.setBounds(203, 421, 122, 35); 
+        btnSaveEmp.setBounds(203, 432, 122, 35); 
         add(btnSaveEmp);
 		
 		btnClear = new JButton("Clear");
 		btnClear.setToolTipText("Reset");
-		btnClear.setBounds(377, 421, 116, 35);
+		btnClear.setBounds(377, 432, 116, 35);
 		btnClear.setBackground(new Color(64, 0, 0)); 
 		btnClear.setForeground(Color.WHITE); 
         btnClear.setFont(new Font("Bell MT", Font.PLAIN, 14)); 
@@ -210,6 +214,17 @@ public class AddEmployeeView extends JPanel {
 		
 		// sending the view to controller 
 		AddEmployeeController controller = new AddEmployeeController(this);
+		
+		lblDepartment = new JLabel("Department");
+		lblDepartment.setForeground(new Color(0, 0, 64));
+		lblDepartment.setFont(new Font("Bell MT", Font.PLAIN, 12));
+		lblDepartment.setBounds(86, 387, 76, 23);
+		add(lblDepartment);
+		
+		cmbDept = new JComboBox();
+		cmbDept.setBounds(172, 387, 167, 22);
+		controller.initializeDepartments();
+		add(cmbDept);
 		controller.empController();
 	}
 	
@@ -277,6 +292,10 @@ public class AddEmployeeView extends JPanel {
     public JLabel getLblTitle() {
     	return lblTitle;
     }
+    
+    public JComboBox getDepartmentComboBox() {
+		return cmbDept;
+	}
     // Setters
     
    
@@ -327,4 +346,8 @@ public class AddEmployeeView extends JPanel {
     public void setBtnClear(JButton btnClear) {
         this.btnClear = btnClear;
     }
+    
+    public void setDepartmentComboBox(JComboBox cmb)  {
+		cmbDept = cmb;
+	}
 }

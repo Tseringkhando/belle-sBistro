@@ -21,7 +21,9 @@ public class ListDepartmentsController {
 	ArrayList<Departments>depts= new ArrayList<Departments>();
 	JTable deptTable = new JTable();	
 	public ListDepartmentsController(ListDepartmentsView v)
-	{ view=v; }
+	{ view=v;
+	 
+	 }
 	
 	public void viewLists()
 	{
@@ -64,6 +66,7 @@ public class ListDepartmentsController {
 		});
 	}
 	
+
 	
 	
 }

@@ -2,6 +2,7 @@ package Model;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -72,6 +73,21 @@ public class ListDepartmentsModel {
 	}
 	public JTable getTable() {
 		return tblDeptData;
+	}
+	
+	/**
+	 * Helper function to give names of department
+	 */
+	
+	public List<String> getDepartmentNames() {
+	    ArrayList<Departments> departments = getArrays(); // Reuse existing method to fetch departments
+	    List<String> names = new ArrayList<>();
+	    if (departments != null) {
+	        for (Departments dept : departments) {
+	            names.add(dept.getDeptName());
+	        }
+	    }
+	    return names;
 	}
 
 }

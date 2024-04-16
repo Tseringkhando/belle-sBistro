@@ -2,11 +2,12 @@ package Controller;
 
 import java.awt.event.*;
 import javax.swing.*;
-import Model.AddEmployeeModel;
-import Model.Employees;
-import View.AddEmployeeView;
+import Model.*;
+import View.*;
+
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Calendar;
 import java.util.regex.Pattern;
 /**
@@ -15,6 +16,8 @@ import java.util.regex.Pattern;
 public class AddEmployeeController {
     AddEmployeeView view;
     AddEmployeeModel model;
+    ListEmployeesController listEmployeesController;
+    Departments deptModel;
     /**
      * Constructor for AddEmployeeController.
      *
@@ -121,4 +124,12 @@ public class AddEmployeeController {
         view.getHireDateSpinner().setValue(new Date());
         view.getPaySpinner().setValue(16.55);
     }
+    
+    public void initializeDepartments() {
+        List<Departments> departments = DepartmentLoader.loadDepartments("departments.dat");
+        for (Departments department : departments) {
+        	view.getDepartmentComboBox().addItem(department.getDeptName()); // Add department name to JComboBox
+        }
+    }
+	
 }

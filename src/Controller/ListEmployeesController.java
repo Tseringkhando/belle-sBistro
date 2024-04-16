@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -63,10 +65,20 @@ public class ListEmployeesController {
 			v.addDeleteEmpListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					addEmpModel = new AddEmployeeModel();
-					addEmpModel.deleteEmp(v, v.getIndex()-1);
+					addEmpModel.deleteEmp(v, v.getIndex());
 				}
 			});
 		}
+		
+		public void initializeComponents() {
+	        List<Departments> departments = DepartmentLoader.loadDepartments("departments.dat");
+	        for (Departments department : departments) {
+	        	view.getDepartmentComboBox().addItem(department.getDeptName()); // Add department name to JComboBox
+	        }
+	    }
+		
+		
+
 	
 	
 

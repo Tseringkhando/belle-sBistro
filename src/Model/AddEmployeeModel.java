@@ -37,7 +37,7 @@ public class AddEmployeeModel {
         ev.getCmbType().getSelectedItem().toString(),
         ((SpinnerDateModel) ev.getDobSpinner().getModel()).getDate().toString(),
         ((SpinnerDateModel) ev.getHireDateSpinner().getModel()).getDate().toString(),
-        (Double) ev.getPaySpinner().getValue()
+        (Double) ev.getPaySpinner().getValue(), ev.getDepartmentComboBox().getSelectedItem().toString()
         );
 
     if (listEmployeesModel.getArrays() != null) {
@@ -112,7 +112,7 @@ public class AddEmployeeModel {
         dv.getCmbType().getSelectedItem().toString(),
         ((SpinnerDateModel)dv.getDobSpinner().getModel()).getDate().toString(),
         ((SpinnerDateModel)dv.getHireDateSpinner().getModel()).getDate().toString(),
-        (Double)dv.getPaySpinner().getValue());
+        (Double)dv.getPaySpinner().getValue(), dv.getDepartmentComboBox().getSelectedItem().toString());
     if (i >= 0 && i < employeeArray.size()) {
       employeeArray.set(i, employeeObj);
       saveEmployeeData();

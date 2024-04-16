@@ -24,7 +24,7 @@ public class ListEmployeesView extends JPanel {
   private JTextField txtAddres;
   private JTextField txtEmail;
   private JButton btnUpdate, btnDelete;
-  private JComboBox cmbRole, cmbType;
+  private JComboBox cmbRole, cmbType, cmbDept;
   private JSpinner paySpinner, hireDateSpinner, dobSpinner;
   /**
    * Create the panel.
@@ -103,13 +103,13 @@ public class ListEmployeesView extends JPanel {
     JLabel lblType = new JLabel("Type");
     lblType.setForeground(new Color(0, 0, 64));
     lblType.setFont(new Font("Bell MT", Font.PLAIN, 12));
-    lblType.setBounds(90, 295, 76, 23);
+    lblType.setBounds(90, 295, 233, 23);
     panel.add(lblType);
 
     JLabel lblHourlyPayRate = new JLabel("Hourly Pay ");
     lblHourlyPayRate.setForeground(new Color(0, 0, 64));
     lblHourlyPayRate.setFont(new Font("Bell MT", Font.PLAIN, 12));
-    lblHourlyPayRate.setBounds(90, 330, 61, 23);
+    lblHourlyPayRate.setBounds(343, 296, 66, 27);
     panel.add(lblHourlyPayRate);
 
     txtFname = new JTextField();
@@ -168,12 +168,12 @@ public class ListEmployeesView extends JPanel {
 
     cmbRole = new JComboBox();
     cmbRole.setModel(new DefaultComboBoxModel(new String[] {"Employee", "Manager"}));
-    cmbRole.setBounds(174, 268, 167, 22);
+    cmbRole.setBounds(174, 268, 149, 22);
     panel.add(cmbRole);
 
     cmbType = new JComboBox();
     cmbType.setModel(new DefaultComboBoxModel(new String[] {"Full - Time", "Part - Time"}));
-    cmbType.setBounds(174, 295, 167, 22);
+    cmbType.setBounds(174, 295, 149, 22);
     panel.add(cmbType);
 
     SpinnerNumberModel paySpinnerModel = new SpinnerNumberModel(16.55, 1.0, null, 0.1);  
@@ -181,7 +181,7 @@ public class ListEmployeesView extends JPanel {
     paySpinner.setEditor(new JSpinner.NumberEditor(paySpinner, "#.##"));
     paySpinner.setFont(new Font("Bell MT", Font.PLAIN, 11));
     paySpinner.setFont(new Font("Bell MT", Font.PLAIN, 11));
-    paySpinner.setBounds(176, 328, 165, 20);
+    paySpinner.setBounds(419, 295, 141, 29);
     panel.add(paySpinner);
 
     btnDelete = new JButton("Delete");
@@ -191,7 +191,7 @@ public class ListEmployeesView extends JPanel {
     btnDelete.setFocusPainted(false);
     btnDelete.setBorder(null);
     btnDelete.setBackground(new Color(64, 0, 0));
-    btnDelete.setBounds(347, 378, 116, 35);
+    btnDelete.setBounds(364, 351, 116, 35);
     panel.add(btnDelete);
 
     btnUpdate = new JButton("Update");
@@ -201,8 +201,18 @@ public class ListEmployeesView extends JPanel {
     btnUpdate.setFocusPainted(false);
     btnUpdate.setBorder(null);
     btnUpdate.setBackground(new Color(0, 153, 102));
-    btnUpdate.setBounds(176, 378, 122, 35);
+    btnUpdate.setBounds(193, 351, 122, 35);
     panel.add(btnUpdate);
+    
+    JLabel lblDepartment = new JLabel("Department");
+    lblDepartment.setForeground(new Color(0, 0, 64));
+    lblDepartment.setFont(new Font("Bell MT", Font.PLAIN, 12));
+    lblDepartment.setBounds(337, 269, 76, 23);
+    panel.add(lblDepartment);
+    
+    cmbDept = new JComboBox();
+    cmbDept.setBounds(413, 269, 147, 22);
+    panel.add(cmbDept);
 
 
     
@@ -211,12 +221,12 @@ public class ListEmployeesView extends JPanel {
       public void mouseClicked(java.awt.event.MouseEvent e)
       {
         updateFieldsFromSelectedRow();
-        System.out.println("Event triggered");
       }
     });
 
 
     setVisible(true);
+    controller.initializeComponents();
     controller.updateEmployeeData(this);
     controller.deleteEmp(this);
     
@@ -306,6 +316,10 @@ private void setEmpID(int id) {
 
 }
 
+public JComboBox getDepartmentComboBox() {
+	return cmbDept;
+}
+
 public int getEmpid() {
 	return empId;
 }
@@ -332,6 +346,7 @@ public int getEmpid() {
       String dob = tblEmployees.getValueAt(selectedRow, 8).toString();
       String hireDate = tblEmployees.getValueAt(selectedRow, 9).toString();
       String hourlyPay = tblEmployees.getValueAt(selectedRow, 10).toString();
+      String deptName  = tblEmployees.getValueAt(selectedRow, 11).toString();
 
 
       // Update fields
@@ -342,6 +357,7 @@ public int getEmpid() {
       getTxtAddres().setText(address);
       getCmbRole().setSelectedItem(role);
       getCmbType().setSelectedItem(type);
+      getDepartmentComboBox().setSelectedItem(deptName);
       // Setup date format to parse the input date/ format from spinner is  EEE MMM dd HH:mm:ss zzz yyyy
       SimpleDateFormat inputFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
       SimpleDateFormat spinnerFormat = new SimpleDateFormat("MMM dd, yyyy");
