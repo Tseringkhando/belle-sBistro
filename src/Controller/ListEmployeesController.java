@@ -32,20 +32,27 @@ public class ListEmployeesController {
 		JScrollPane scrollPane = model.getScrollPane();
 		view.setEmpTable(model.getTable());
 		view.setScrollPane(scrollPane);
-	}
-	
-	// update department
-		public void updateEmployee() {
-			addEmpModel = new AddEmployeeModel();
-			try {
-				addEmpModel.updateEmployee(view.getEmployees(), view.getIndex());
-			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-		}
 
-	
+	}
+
+	// update department
+	public void updateEmployeeData(ListEmployeesView view) {
+		view.addUpdateEmpListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addEmpModel = new AddEmployeeModel();
+				try {
+					addEmpModel.updateEmployee(view, view.getIndex()-1);
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+	}
+
+
 
 }

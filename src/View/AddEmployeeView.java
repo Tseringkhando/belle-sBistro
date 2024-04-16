@@ -194,10 +194,11 @@ public class AddEmployeeView extends JPanel {
 		add(paySpinner);
 		
 		SpinnerDateModel dobModel = new SpinnerDateModel();
-		dobSpinner = new JSpinner(dobModel);
-		dobSpinner.setBounds(174, 127, 319, 20);
 		// Setting the date editor with the desired format
+		dobSpinner = new JSpinner(dobModel);
 		dobSpinner.setEditor(new JSpinner.DateEditor(dobSpinner, "MMM dd, yyyy"));
+		dobSpinner.setBounds(174, 127, 319, 20);
+		
 		add(dobSpinner);
 
 	
