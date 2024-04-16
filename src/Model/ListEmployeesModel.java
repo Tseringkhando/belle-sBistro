@@ -58,7 +58,7 @@ public class ListEmployeesModel {
     
 	public void refreshTableModel() {
 		tblEmployeeModel.setRowCount(0); // Clear all rows
-	    sendEmployeeData(); // Repopulate table model with updated data
+	    sendEmployeeData(); // populating table model with updated data
 	}
 	
     public JScrollPane getScrollPane() {

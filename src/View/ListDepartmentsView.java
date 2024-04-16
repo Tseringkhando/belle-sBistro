@@ -68,7 +68,7 @@ public class ListDepartmentsView extends JPanel {
 		panelDeptDetails.add(lblId);
 
 		txtDeptName = new JTextField();
-		txtDeptName.setBorder(null);
+		txtDeptName.setEditable(false);
 		txtDeptName.setColumns(10);
 		txtDeptName.setBounds(102, 72, 234, 30);
 		panelDeptDetails.add(txtDeptName);
@@ -145,6 +145,7 @@ public class ListDepartmentsView extends JPanel {
 			public void mouseClicked(java.awt.event.MouseEvent e)
 			{
 				int rowNum;
+				txtDeptName.setEditable(true);
 				// getting all values from selected row, store them and send those values to fill the form
 				String id,name;
 				DefaultTableModel m = (DefaultTableModel)tblDept.getModel();

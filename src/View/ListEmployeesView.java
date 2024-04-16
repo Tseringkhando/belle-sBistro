@@ -35,8 +35,9 @@ public class ListEmployeesView extends JPanel {
     ListEmployeesController controller = new ListEmployeesController(this);
     controller.viewLists();
     
-    JLabel lblNewLabel = new JLabel("New label");
-    lblNewLabel.setBounds(10, 11, 48, 14);
+    JLabel lblNewLabel = new JLabel("Employees");
+    lblNewLabel.setFont(new Font("Bell MT", Font.PLAIN, 14));
+    lblNewLabel.setBounds(278, 11, 153, 14);
     add(lblNewLabel);
 
     scrollPaneEmployees.setBounds(10, 31, 586, 185);
@@ -113,10 +114,10 @@ public class ListEmployeesView extends JPanel {
     panel.add(lblHourlyPayRate);
 
     txtFname = new JTextField();
+    txtFname.setEditable(false);
     txtFname.setSelectionColor(new Color(255, 128, 128));
     txtFname.setFont(new Font("Bell MT", Font.PLAIN, 12));
     txtFname.setColumns(10);
-    txtFname.setBorder(null);
     txtFname.setBounds(176, 36, 319, 23);
     panel.add(txtFname);
 
@@ -124,7 +125,6 @@ public class ListEmployeesView extends JPanel {
     txtLname.setSelectionColor(new Color(255, 128, 128));
     txtLname.setFont(new Font("Bell MT", Font.PLAIN, 12));
     txtLname.setColumns(10);
-    txtLname.setBorder(null);
     txtLname.setBounds(176, 65, 319, 23);
     panel.add(txtLname);
 
@@ -139,7 +139,6 @@ public class ListEmployeesView extends JPanel {
     txtSin.setSelectionColor(new Color(255, 128, 128));
     txtSin.setFont(new Font("Bell MT", Font.PLAIN, 12));
     txtSin.setColumns(10);
-    txtSin.setBorder(null);
     txtSin.setBounds(176, 136, 319, 23);
     panel.add(txtSin);
 
@@ -147,7 +146,6 @@ public class ListEmployeesView extends JPanel {
     txtAddres.setSelectionColor(new Color(255, 128, 128));
     txtAddres.setFont(new Font("Bell MT", Font.PLAIN, 12));
     txtAddres.setColumns(10);
-    txtAddres.setBorder(null);
     txtAddres.setBounds(176, 167, 319, 23);
     panel.add(txtAddres);
 
@@ -162,7 +160,7 @@ public class ListEmployeesView extends JPanel {
     txtEmail.setSelectionColor(new Color(255, 128, 128));
     txtEmail.setFont(new Font("Bell MT", Font.PLAIN, 12));
     txtEmail.setColumns(10);
-    txtEmail.setBorder(null);
+    
     txtEmail.setBounds(176, 235, 319, 23);
     panel.add(txtEmail);
 
@@ -189,7 +187,7 @@ public class ListEmployeesView extends JPanel {
     btnDelete.setForeground(Color.WHITE);
     btnDelete.setFont(new Font("Bell MT", Font.PLAIN, 14));
     btnDelete.setFocusPainted(false);
-    btnDelete.setBorder(null);
+   
     btnDelete.setBackground(new Color(64, 0, 0));
     btnDelete.setBounds(364, 351, 116, 35);
     panel.add(btnDelete);
@@ -199,7 +197,7 @@ public class ListEmployeesView extends JPanel {
     btnUpdate.setForeground(Color.WHITE);
     btnUpdate.setFont(new Font("Bell MT", Font.PLAIN, 14));
     btnUpdate.setFocusPainted(false);
-    btnUpdate.setBorder(null);
+    
     btnUpdate.setBackground(new Color(0, 153, 102));
     btnUpdate.setBounds(193, 351, 122, 35);
     panel.add(btnUpdate);
@@ -224,7 +222,7 @@ public class ListEmployeesView extends JPanel {
       }
     });
 
-
+    disableFields();
     setVisible(true);
     controller.initializeComponents();
     controller.updateEmployeeData(this);
@@ -304,24 +302,24 @@ public class ListEmployeesView extends JPanel {
       return dobSpinner;
   }
 public JButton getBtnUpdate() {
-	return btnUpdate;
+  return btnUpdate;
 }
 
 public JButton getBtnDelete() {
-	return btnDelete;
+  return btnDelete;
 }
 
 private void setEmpID(int id) {
-	empId = id;
+  empId = id;
 
 }
 
 public JComboBox getDepartmentComboBox() {
-	return cmbDept;
+  return cmbDept;
 }
 
 public int getEmpid() {
-	return empId;
+  return empId;
 }
 
   /**
@@ -333,7 +331,8 @@ public int getEmpid() {
     int selectedRow = tblEmployees.getSelectedRow();
 
     if (selectedRow >= 0) {
-    	indexArray = selectedRow;
+      enableFields();
+      indexArray = selectedRow;
       // all rows
       empId = Integer.parseInt(tblEmployees.getValueAt(selectedRow, 0).toString());
       String firstName = tblEmployees.getValueAt(selectedRow, 1).toString();
@@ -381,8 +380,39 @@ public int getEmpid() {
       } catch (NumberFormatException e) {
         System.err.println("Error parsing hourly pay: " + e.getMessage());
       }
-
-
-    }
+    }else {disableFields();}
+  }
+  
+  
+  private void enableFields() {
+      txtFname.setEditable(true);
+      txtLname.setEditable(true);
+      txtSin.setEditable(true);
+      txtAddres.setEditable(true);
+      txtEmail.setEditable(true);
+      cmbRole.setEnabled(true);
+      cmbType.setEnabled(true);
+      dobSpinner.setEnabled(true);
+      hireDateSpinner.setEnabled(true);
+      paySpinner.setEnabled(true);
+      btnUpdate.setEnabled(true);
+      btnDelete.setEnabled(true);
+      cmbDept.setEnabled(true);
+  }
+  
+  
+  private void disableFields() {
+      txtLname.setEditable(false);
+      txtSin.setEditable(false);
+      txtAddres.setEditable(false);
+      txtEmail.setEditable(false);
+      cmbRole.setEnabled(false);
+      cmbType.setEnabled(false);
+      dobSpinner.setEnabled(false);
+      hireDateSpinner.setEnabled(false);
+      paySpinner.setEnabled(false);
+      btnUpdate.setEnabled(false);
+      btnDelete.setEnabled(false);
+      cmbDept.setEnabled(false);
   }
 }
