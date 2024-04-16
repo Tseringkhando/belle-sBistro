@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -23,6 +24,7 @@ import javax.swing.JMenu;
 public class AdminView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	ImageIcon icon = new ImageIcon("icon.jpg");
 	private JPanel contentPane, jpSideBar, jpContent;
 	private JButton btnHome, btnDepartments, btnManagers, btnEmployees, btnAddEmployee, btnAddDepartment, btnLogout, btnCredentials;
 	private JLabel lblNewLabel;
@@ -32,9 +34,8 @@ public class AdminView extends JFrame {
 	 * Create the frame.
 	 */
 	public AdminView() {
-
-		setTitle("Belle's");
-		//		setIconImage(icon.getImage());
+		setTitle("Belle's System");
+		setIconImage(icon.getImage());
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize( 900, 700);

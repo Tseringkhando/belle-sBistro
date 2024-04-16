@@ -30,7 +30,6 @@ public class LoginController {
 	 * It fetches user inputs, validates them, and processes the login based on user type.
 	 */
 	public void loginData() {
-		System.out.println("Controller worked");
 		view.addActionToBtn(new ActionListener () {
 
 			public void actionPerformed(ActionEvent e) {
@@ -45,15 +44,10 @@ public class LoginController {
 						adminView.setVisible(true);
 						AdminController adminController= new AdminController(adminView);
 						adminController.checkbutton();
-						System.out.println("Logged in Successfully.");
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "Username or Password Incorrect!");
 					}
-
-				}
-				if(view.getUserType().getSelectedItem().equals("Department Secretary")) {
-					model.setType("DS");
 				}
 			}
 		});
