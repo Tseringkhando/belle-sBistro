@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Employees implements Serializable {
 
 	/**
-	 * 
+	 * This class represents an employee with various attributes.
 	 */
 	private static final long serialVersionUID = 1L;
 	private int empID;
