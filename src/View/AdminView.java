@@ -46,7 +46,7 @@ public class AdminView extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		JMenu mnNewMenu = new JMenu("Home");
+		JMenu mnNewMenu = new JMenu("File");
 		menuBar.add(mnNewMenu);
 
 		mntmExit = new JMenuItem("Exit");
