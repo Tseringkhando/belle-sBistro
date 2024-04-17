@@ -62,6 +62,9 @@ public class ListDepartmentsController {
 			public void actionPerformed(ActionEvent e) {
 				AddDepartmentModel n = new AddDepartmentModel();
 				n.deleteDept(v, v.getIndex());
+				model.refreshTableModel(); // Refresh the table model
+                view.getPane().revalidate();
+                view.getPane().repaint();
 			}
 		});
 	}

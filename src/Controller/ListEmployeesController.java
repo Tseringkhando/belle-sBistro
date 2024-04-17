@@ -66,6 +66,9 @@ public class ListEmployeesController {
 				public void actionPerformed(ActionEvent e) {
 					addEmpModel = new AddEmployeeModel();
 					addEmpModel.deleteEmp(v, v.getIndex());
+					model.refreshTableModel(); // Refresh the table model
+	                view.getScrollPane().revalidate();
+	                view.getScrollPane().repaint();
 				}
 			});
 		}

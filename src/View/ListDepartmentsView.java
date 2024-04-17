@@ -51,7 +51,7 @@ public class ListDepartmentsView extends JPanel {
 		add(panelDeptDetails);
 		panelDeptDetails.setLayout(null);
 
-		JLabel lblDeptName = new JLabel("Dept ID");
+		JLabel lblDeptName = new JLabel("Dept Code");
 		lblDeptName.setFont(new Font("Bell MT", Font.PLAIN, 12));
 		lblDeptName.setBounds(10, 40, 101, 14);
 		panelDeptDetails.add(lblDeptName);
