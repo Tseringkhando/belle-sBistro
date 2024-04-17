@@ -12,14 +12,14 @@ import Model.*;
 import View.*;
 
 public class ListDepartmentsController {
-	ListDepartmentsView view;
-	ListDepartmentsModel model;
-	AddDepartmentModel addDeptModel;
-	Departments deptData;
+	private ListDepartmentsView view;
+	private ListDepartmentsModel model;
+	private AddDepartmentModel addDeptModel;
+	private Departments deptData;
 	
 	
-	ArrayList<Departments>depts= new ArrayList<Departments>();
-	JTable deptTable = new JTable();	
+	private ArrayList<Departments>depts= new ArrayList<Departments>();
+	private JTable deptTable = new JTable();	
 	public ListDepartmentsController(ListDepartmentsView v)
 	{ view=v;
 	 
@@ -40,11 +40,16 @@ public class ListDepartmentsController {
 	        public void actionPerformed(ActionEvent e) {
 	            addDeptModel = new AddDepartmentModel();
 	            try {
-	                addDeptModel.updateDepartment(view, view.getIndex());
-	                model.refreshTableModel(); // Refresh the table model
-	                view.getPane().revalidate();
-	                view.getPane().repaint();
-	                JOptionPane.showMessageDialog(null, "Updated Successfully");
+	            	if(!view.getName().equals("")) {
+	            		addDeptModel.updateDepartment(view, view.getIndex());
+		                model.refreshTableModel(); // Refresh the table model
+		                view.getPane().revalidate();
+		                view.getPane().repaint();
+		                JOptionPane.showMessageDialog(null, "Updated Successfully");
+	            	}else {
+	            		JOptionPane.showMessageDialog(view, "Department cannot be empty.");
+	            	}
+	                
 	            } catch (FileNotFoundException e1) {
 	                e1.printStackTrace();
 	            } catch (IOException e1) {
@@ -65,6 +70,7 @@ public class ListDepartmentsController {
 				model.refreshTableModel(); // Refresh the table model
                 view.getPane().revalidate();
                 view.getPane().repaint();
+                JOptionPane.showMessageDialog(null, "Department Deleted Successfully");
 			}
 		});
 	}

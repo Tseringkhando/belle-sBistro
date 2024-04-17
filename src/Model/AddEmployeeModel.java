@@ -73,8 +73,6 @@ public class AddEmployeeModel {
       ObjectOutputStream oos = new ObjectOutputStream(fout);
       oos.writeObject(employeeArray);
       oos.close();
-
-
     }catch (Exception e) {
       e.getMessage();
       e.printStackTrace();

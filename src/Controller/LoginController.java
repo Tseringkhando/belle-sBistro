@@ -34,30 +34,34 @@ public class LoginController {
 		view.addActionToBtn(new ActionListener () {
 
 			public void actionPerformed(ActionEvent e) {
-				// Print username to console (for debugging)
-				System.out.println(view.getUsername());
-				 // Check if the selected user type is "Admin"
-				if(view.getUserType().getSelectedItem().equals("Admin"))
-				{
-					model.setType("AD"); // Set user type to "AD" (Admin)
-					 // Attempt to log in as an admin
-					model.loginAdmin();
-					 // Verify the username and password
-					if(model.verify(view.getUsername(), view.getUserPassword())) {
-						// If verification is successful, close the login view
-						view.dispose();
-						// Open the AdminView
-						AdminView adminView = new AdminView();
-						adminView.setVisible(true);
-						// Initialize the AdminController and check button permissions
-						AdminController adminController= new AdminController(adminView);
-						adminController.checkbutton();
+
+				if(!view.getUsername().equals("") && !view.getUserPassword().equals("") ) {
+					// Check if the selected user type is "Admin"
+					if(view.getUserType().getSelectedItem().equals("Admin"))
+					{
+						model.setType("AD"); // Set user type to "AD" (Admin)
+						// Attempt to log in as an admin
+						model.loginAdmin();
+						// Verify the username and password
+						if(model.verify(view.getUsername(), view.getUserPassword())) {
+							// If verification is successful, close the login view
+							view.dispose();
+							// Open the AdminView
+							AdminView adminView = new AdminView();
+							adminView.setVisible(true);
+							// Initialize the AdminController and check button permissions
+							AdminController adminController= new AdminController(adminView);
+							adminController.checkbutton();
+						}
+						else {
+							// If verification fails, show an error message
+							JOptionPane.showMessageDialog(null, "Username or Password Incorrect!");
+						}
 					}
-					else {
-						 // If verification fails, show an error message
-						JOptionPane.showMessageDialog(null, "Username or Password Incorrect!");
-					}
+				}else {
+					JOptionPane.showMessageDialog(null, "Fields Empty!");
 				}
+
 			}
 		});
 	}

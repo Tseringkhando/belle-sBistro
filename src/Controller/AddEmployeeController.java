@@ -35,13 +35,10 @@ public class AddEmployeeController {
         // Save employee
         view.getBtnSaveEmp().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            
             		if (validateInputs()) {
                         model.addEmployee(view);
                         resetFields();
                     }
-            	    
-            
             }
         });
 
@@ -58,56 +55,58 @@ public class AddEmployeeController {
      * @return true if all inputs are valid, otherwise false.
      */
     private boolean validateInputs() {
-        String sin = view.getTxtSin().getText();
-        String email = view.getTxtEmail().getText();
-        double payRate = (Double) view.getPaySpinner().getValue();
-        Date dob = ((SpinnerDateModel) view.getDobSpinner().getModel()).getDate();
-        ArrayList<Employees> employees = model.getEmployeeArray();
-        
-        if(!employees.isEmpty()) {
-        	 // Check for existing SIN or email
-            for (Employees emp : employees) {
-                if (emp.getSin().equals(sin)) {
-                    JOptionPane.showMessageDialog(view, "An employee with this SIN already exists.");
-                    return false;
-                }
-                if (emp.getEmail().equals(email)) {
-                    JOptionPane.showMessageDialog(view, "An employee with this email already exists.");
-                    return false;
+    	if(!view.getTxtFname().getText().equals("") && !view.getTxtLname().getText().equals("")) {
+    		String sin = view.getTxtSin().getText();
+            String email = view.getTxtEmail().getText();
+            double payRate = (Double) view.getPaySpinner().getValue();
+            Date dob = ((SpinnerDateModel) view.getDobSpinner().getModel()).getDate();
+            ArrayList<Employees> employees = model.getEmployeeArray();
+            
+            if(!employees.isEmpty()) {
+            	 // Check for existing SIN or email
+                for (Employees emp : employees) {
+                    if (emp.getSin().equals(sin)) {
+                        JOptionPane.showMessageDialog(view, "An employee with this SIN already exists.");
+                        return false;
+                    }
+                    if (emp.getEmail().equals(email)) {
+                        JOptionPane.showMessageDialog(view, "An employee with this email already exists.");
+                        return false;
+                    }
                 }
             }
-        }
 
-        // Validate SIN
-        if (!Pattern.matches("\\d{9}", sin)) {
-            JOptionPane.showMessageDialog(view, "SIN must be 9 digits only.");
-            return false;
-        }
+            // Validate SIN
+            if (!Pattern.matches("\\d{9}", sin)) {
+                JOptionPane.showMessageDialog(view, "SIN must be 9 digits only.");
+                return false;
+            }
 
-        // Validate email using RegEx
-        if (!Pattern.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", email)) {
-            JOptionPane.showMessageDialog(view, "Invalid email format.");
-            return false;
-        }
+            // Validate email using RegEx
+            if (!Pattern.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", email)) {
+                JOptionPane.showMessageDialog(view, "Invalid email format.");
+                return false;
+            }
+            // Validate age
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(dob);
+            int age = Calendar.getInstance().get(Calendar.YEAR) - cal.get(Calendar.YEAR);
+            if (age < 0 || age > 100) {
+                JOptionPane.showMessageDialog(view, "Age must be between 0 and 100.");
+                return false;
+            }
+            // Validate pay rate
+            if (payRate <= 0.0) {
+                JOptionPane.showMessageDialog(view, "Pay rate must be greater than 0.");
+                return false;
+            }
 
-       
-
-        // Validate age
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(dob);
-        int age = Calendar.getInstance().get(Calendar.YEAR) - cal.get(Calendar.YEAR);
-        if (age < 0 || age > 100) {
-            JOptionPane.showMessageDialog(view, "Age must be between 0 and 100.");
-            return false;
-        }
-
-        // Validate pay rate
-        if (payRate <= 0.0) {
-            JOptionPane.showMessageDialog(view, "Pay rate must be greater than 0.");
-            return false;
-        }
-
-        return true;
+            return true;
+    	}else {
+    		JOptionPane.showMessageDialog(view, "Employee's names cannot be empty.");
+    		return false;
+    	}
+        
     }
     /**
      * Resets all input fields to their default states.

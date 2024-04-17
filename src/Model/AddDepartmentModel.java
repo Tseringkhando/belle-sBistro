@@ -75,8 +75,6 @@ public class AddDepartmentModel {
     deptUsers.set(i,deptData); // Update the department at index i
     addDepartmentData(); // Save updated department list to file
     deptRecord.refreshTableModel(); // Refresh the table model to reflect changes
-    
-    JOptionPane.showMessageDialog(null, "Updated Successfully");
   }
   
   
@@ -90,7 +88,8 @@ public class AddDepartmentModel {
     deptUsers.remove(i);  // Remove the department at index i
     // updata data
     addDepartmentData();
-    JOptionPane.showMessageDialog(null, "Department Deleted Successfully");}
+    
+    }
   }
 
 }
