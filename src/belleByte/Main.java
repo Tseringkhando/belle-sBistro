@@ -15,6 +15,12 @@ import java.awt.*;
 import Controller.LoginController;
 import Model.Login;
 import View.*;
+
+/**
+ * The Main class serves as the entry point for the Human Resource Management System (HRMS) application.
+ * It creates an instance of the LoginView class to display the login interface, initializes the Login model,
+ * and sets up the LoginController to handle login attempts.
+ */
 public class Main {
 	 /**
      * The main method that initiates the application.
@@ -31,11 +37,16 @@ public class Main {
      * @param args command-line arguments (not used)
      */
 	public static void main(String[] args) {
+<<<<<<< HEAD
 		 // Create an instance of LoginView
+=======
+		// Create a new instance of the LoginView
+>>>>>>> c7f9151701a3b368e1fcb57de3f1609327ff103d
         LoginView view = new LoginView();
 
         // Make the LoginView window visible
         view.setVisible(true);
+<<<<<<< HEAD
 
         // Create an instance of Login model
         Login model = new Login();
@@ -45,6 +56,14 @@ public class Main {
 
         // Invoke the loginData method to initialize the login process
         con.loginData();
+=======
+        // Initialize the Login model
+        Login model= new Login();
+        // Create a new LoginController with the LoginView and Login model
+		LoginController con = new LoginController(view, model);
+		// Call the loginData method in the controller to handle login attempts
+		con.loginData();
+>>>>>>> c7f9151701a3b368e1fcb57de3f1609327ff103d
         
     }
 }

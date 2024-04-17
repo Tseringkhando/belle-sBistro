@@ -19,18 +19,42 @@ import javax.swing.SpinnerDateModel;
 import Model.*;
 import View.*;
 
+/**
+ * The ListEmployeesController class is responsible for handling user interactions
+ * and updating the view and model for the list of employees in the Human Resource
+ * Management System (HRMS) application.
+ */
 public class ListEmployeesController {
+<<<<<<< HEAD
 	private ListEmployeesView view;
 	private ListEmployeesModel model;
 	private AddEmployeeModel addEmpModel;
 	private Employees empData;
 	private ArrayList<Employees> emps= new ArrayList<Employees>();
 	private JTable empTable = new JTable();	
+=======
+	ListEmployeesView view;
+	ListEmployeesModel model;
+	AddEmployeeModel addEmpModel;
+	Employees empData;
+
+
+	ArrayList<Employees> emps= new ArrayList<Employees>();
+	JTable empTable = new JTable();	
+	
+	/**
+    * Constructor for the ListEmployeesController class.
+    * @param v The ListEmployeesView object associated with this controller.
+    */
+>>>>>>> c7f9151701a3b368e1fcb57de3f1609327ff103d
 	public ListEmployeesController(ListEmployeesView v)
 	{
 		view=v;
 	}
-
+    
+	/**
+    * Method to populate and display the list of employees in the view.
+    */
 	public void viewLists()
 	{
 		model = new ListEmployeesModel();
@@ -40,7 +64,10 @@ public class ListEmployeesController {
 
 	}
 
-	// update employee
+	/**
+    * Method to update an employee's information.
+    * @param view The ListEmployeesView object associated with this controller.
+    */
 	public void updateEmployeeData(ListEmployeesView view) {
 		view.addUpdateEmpListener(new ActionListener() {
 
@@ -65,7 +92,10 @@ public class ListEmployeesController {
 		});
 	}
 	
-	// delete emp
+	/**
+     * Method to delete an employee from the list.
+     * @param v The ListEmployeesView object associated with this controller.
+     */
 		public void deleteEmp(ListEmployeesView v)
 		{
 			v.addDeleteEmpListener(new ActionListener() {
@@ -78,7 +108,9 @@ public class ListEmployeesController {
 				}
 			});
 		}
-		
+		/**
+	    * Method to initialize the department ComboBox with department names.
+	    */
 		public void initializeComponents() {
 	        List<Departments> departments = DepartmentLoader.loadDepartments("departments.dat");
 	        for (Departments department : departments) {

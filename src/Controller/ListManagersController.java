@@ -16,6 +16,11 @@ import Model.ListManagersModel;
 import View.ListEmployeesView;
 import View.ListManagersView;
 
+/**
+ * The ListManagersController class is responsible for handling user interactions
+ * and updating the view and model for the list of managers in the Human Resource
+ * Management System (HRMS) application.
+ */
 public class ListManagersController {
 	ListManagersView view;
 	ListManagersModel model;
@@ -24,11 +29,18 @@ public class ListManagersController {
 
 	ArrayList<Employees> emps= new ArrayList<Employees>();
 	JTable empTable = new JTable();	
+	
+	/**
+     * Constructor for the ListManagersController class.
+     * @param v The ListManagersView object associated with this controller.
+     */
 	public ListManagersController(ListManagersView v)
 	{
 		view=v;
 	}
-
+	/**
+     * Method to populate and display the list of managers in the view.
+     */
 	public void viewLists()
 	{
 		model = new ListManagersModel();
