@@ -154,7 +154,7 @@ public class AddEmployeeView extends JPanel {
 		add(cmbRole);
 		
 		cmbType = new JComboBox();
-		cmbType.setModel(new DefaultComboBoxModel(new String[] {"Full - Time", "Part - Time"}));
+		cmbType.setModel(new DefaultComboBoxModel(new String[] {"Full - Time", "Part - Time", "Contract"}));
 		cmbType.setBounds(172, 322, 167, 22);
 		add(cmbType);
 		
