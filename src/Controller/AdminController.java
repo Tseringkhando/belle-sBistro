@@ -10,7 +10,7 @@ import View.*;
  * Handles interaction between the view and the model for various administrative tasks.
  */
 public class AdminController {
-	AdminView view;
+	private AdminView view;
 	/**
 	 * Constructor for AdminController.
 	 *

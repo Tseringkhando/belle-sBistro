@@ -22,13 +22,13 @@ import View.ListManagersView;
  * Management System (HRMS) application.
  */
 public class ListManagersController {
-	ListManagersView view;
-	ListManagersModel model;
-	Employees empData;
+	private ListManagersView view;
+	private ListManagersModel model;
+	private Employees empData;
 
 
-	ArrayList<Employees> emps= new ArrayList<Employees>();
-	JTable empTable = new JTable();	
+	private ArrayList<Employees> emps= new ArrayList<Employees>();
+	private JTable empTable = new JTable();	
 	
 	/**
      * Constructor for the ListManagersController class.

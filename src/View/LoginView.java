@@ -12,7 +12,7 @@ import javax.swing.border.*;
 public class LoginView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	ImageIcon icon = new ImageIcon("login.png");
+	private ImageIcon icon = new ImageIcon("login.png");
 	private GradientPanel contentPane;
 	private JPanel jpTop, jpContent;
 	private JLabel lblTitle, userIconLabel, lblUsername, lblPassword;
@@ -141,14 +141,14 @@ public class LoginView extends JFrame {
 		lblUsername = new JLabel("Username");
 		lblUsername.setFont(new Font("Bell MT", Font.PLAIN, 11));
 		lblUsername.setForeground(Color.WHITE);
-		lblUsername.setBounds(252, 99, 284, 29);
+		lblUsername.setBounds(228, 99, 284, 29);
 		lblUsername.setVisible(true);
 		jpContent.add(lblUsername);
 
 		lblPassword = new JLabel("Password");
 		lblPassword.setFont(new Font("Bell MT", Font.PLAIN, 11));
 		lblPassword.setForeground(Color.WHITE);
-		lblPassword.setBounds(252, 181, 290, 21);
+		lblPassword.setBounds(228, 181, 290, 21);
 		jpContent.add(lblPassword);
 
 		txtUsername = new JTextField();
@@ -156,7 +156,7 @@ public class LoginView extends JFrame {
 		txtUsername.setForeground(new Color(255, 255, 255));
 		txtUsername.setOpaque(false);
 		txtUsername.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.BOTTOM, null, null));
-		txtUsername.setBounds(252, 123, 284, 41);
+		txtUsername.setBounds(228, 123, 284, 41);
 		jpContent.add(txtUsername);
 
 		txtPassword = new JPasswordField();
@@ -164,13 +164,13 @@ public class LoginView extends JFrame {
 		txtPassword.setOpaque(false);
 		txtPassword.setToolTipText("Password");
 		txtPassword.setBorder(new TitledBorder(null, "", TitledBorder.TRAILING, TitledBorder.BOTTOM, null, null));
-		txtPassword.setBounds(252, 201, 284, 41);
+		txtPassword.setBounds(228, 201, 284, 41);
 		jpContent.add(txtPassword);
 
 		btnLogin = new JButton("Login");
 		btnLogin.setFont(new Font("Bell MT", Font.PLAIN, 11));
 		btnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnLogin.setBounds(447, 293, 89, 41);
+		btnLogin.setBounds(423, 293, 89, 41);
 		btnLogin.setBackground(new Color(255, 255, 255)); // Set a flat background color
 		btnLogin.setForeground(new Color(0, 0, 64)); // Set text color to white
 		btnLogin.setFocusPainted(false); // Remove focus border
@@ -199,7 +199,7 @@ public class LoginView extends JFrame {
 		cmbDept.setModel(new DefaultComboBoxModel(new String[] {"Admin", "Manager"}));
 		cmbDept.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		cmbDept.setToolTipText("Select Role");
-		cmbDept.setBounds(252, 258, 118, 21);
+		cmbDept.setBounds(228, 258, 118, 21);
 
 		cmbDept.setBackground(new Color(255, 255, 255)); // Set background color
 		cmbDept.setForeground(new Color(0, 0, 64)); // Set text color

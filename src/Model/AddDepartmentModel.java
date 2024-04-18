@@ -11,11 +11,11 @@ import Controller.*;
  * This class represents the model for adding departments.
  */
 public class AddDepartmentModel {
-  AddDepartmentView dv;  // Reference to the view
+  private AddDepartmentView dv;  // Reference to the view
 
-  ArrayList <Departments> deptUsers  = new ArrayList<Departments>();
-  ListDepartmentsModel deptRecord = new ListDepartmentsModel(); // list of department model
-  Departments deptData; // Department data
+  private ArrayList <Departments> deptUsers  = new ArrayList<Departments>();
+  private ListDepartmentsModel deptRecord = new ListDepartmentsModel(); // list of department model
+  private Departments deptData; // Department data
 
   /**
    * Method to add a department to the system.
@@ -88,7 +88,6 @@ public class AddDepartmentModel {
     deptUsers.remove(i);  // Remove the department at index i
     // updata data
     addDepartmentData();
-    
     }
   }
 

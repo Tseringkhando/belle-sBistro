@@ -14,13 +14,14 @@ import Controller.ListDepartmentsController;
 
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Cursor;
 
 public class ListDepartmentsView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
 	private JTable tblDept;
-	JScrollPane scrollPaneDept;
+	private JScrollPane scrollPaneDept;
 	private JTextField txtDeptID;
 	private JTextField txtDeptName;
 	private JPanel panelDeptDetails;
@@ -74,6 +75,7 @@ public class ListDepartmentsView extends JPanel {
 		panelDeptDetails.add(txtDeptName);
 
 		btnUpdateDept = new JButton("Update");
+		btnUpdateDept.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnUpdateDept.setForeground(new Color(255, 255, 255));
 		btnUpdateDept.setFont(new Font("Bell MT", Font.PLAIN, 12));
 		btnUpdateDept.setBorderPainted(false);
@@ -84,6 +86,7 @@ public class ListDepartmentsView extends JPanel {
 		panelDeptDetails.add(btnUpdateDept);
 
 		btnDeleteDept = new JButton("Delete");
+		btnDeleteDept.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnDeleteDept.setToolTipText("Delete Data");
 		btnDeleteDept.setForeground(Color.WHITE);
 		btnDeleteDept.setFont(new Font("Bell MT", Font.PLAIN, 12));

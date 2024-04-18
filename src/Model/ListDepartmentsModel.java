@@ -12,11 +12,10 @@ import javax.swing.table.TableColumnModel;
  * This class handles the model for displaying a list of departments in a JTable.
  */
 public class ListDepartmentsModel {
-	ArrayList<Departments> deptScroll = new ArrayList<Departments>();
-
-	DefaultTableModel tblDeptModel = new DefaultTableModel(0, 2);
+	private ArrayList<Departments> deptScroll = new ArrayList<Departments>();
+	private DefaultTableModel tblDeptModel = new DefaultTableModel(0, 2);
 	private JTable tblDeptData=new JTable(tblDeptModel);
-	JScrollPane scrollPaneDept = new JScrollPane(tblDeptData);
+	private JScrollPane scrollPaneDept = new JScrollPane(tblDeptData);
     
 	/**
      * Constructor for ListDepartmentsModel. Retrieves department data and sends it to the table.
@@ -39,8 +38,6 @@ public class ListDepartmentsModel {
 			Object o= ois.readObject();
 			departments = (ArrayList<Departments>)o;
 			ois.close();
-
-
 		}
 		catch (FileNotFoundException e){
 

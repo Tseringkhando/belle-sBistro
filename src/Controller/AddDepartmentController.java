@@ -13,8 +13,8 @@ import View.AddDepartmentView;
  * Handles the input validation and updates the model based on user actions in the view.
  */
 public class AddDepartmentController {
-  AddDepartmentView view;
-  AddDepartmentModel model;
+	private AddDepartmentView view;
+	private AddDepartmentModel model;
   /**
    * Constructor for AddDepartmentController.
    * @param v The AddDepartmentView associated with this controller.

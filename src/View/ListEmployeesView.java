@@ -183,6 +183,7 @@ public class ListEmployeesView extends JPanel {
     panel.add(paySpinner);
 
     btnDelete = new JButton("Delete");
+    btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     btnDelete.setToolTipText("Delete the employee details");
     btnDelete.setForeground(Color.WHITE);
     btnDelete.setFont(new Font("Bell MT", Font.PLAIN, 14));
@@ -193,6 +194,7 @@ public class ListEmployeesView extends JPanel {
     panel.add(btnDelete);
 
     btnUpdate = new JButton("Update");
+    btnUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     btnUpdate.setToolTipText("Save details");
     btnUpdate.setForeground(Color.WHITE);
     btnUpdate.setFont(new Font("Bell MT", Font.PLAIN, 14));

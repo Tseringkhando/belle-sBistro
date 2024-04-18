@@ -25,28 +25,18 @@ import View.*;
  * Management System (HRMS) application.
  */
 public class ListEmployeesController {
-<<<<<<< HEAD
+
 	private ListEmployeesView view;
 	private ListEmployeesModel model;
 	private AddEmployeeModel addEmpModel;
 	private Employees empData;
 	private ArrayList<Employees> emps= new ArrayList<Employees>();
 	private JTable empTable = new JTable();	
-=======
-	ListEmployeesView view;
-	ListEmployeesModel model;
-	AddEmployeeModel addEmpModel;
-	Employees empData;
 
-
-	ArrayList<Employees> emps= new ArrayList<Employees>();
-	JTable empTable = new JTable();	
-	
 	/**
     * Constructor for the ListEmployeesController class.
     * @param v The ListEmployeesView object associated with this controller.
     */
->>>>>>> c7f9151701a3b368e1fcb57de3f1609327ff103d
 	public ListEmployeesController(ListEmployeesView v)
 	{
 		view=v;
@@ -134,7 +124,7 @@ public class ListEmployeesController {
 
 		            for (int i = 0; i < employees.size(); i++) {
 		                if (i == currentIndex) continue; // Skip the current employee
-
+		                
 		                Employees emp = employees.get(i);
 		                if (emp.getSin().equals(sin)) {
 		                    JOptionPane.showMessageDialog(view, "An employee with this SIN already exists.");

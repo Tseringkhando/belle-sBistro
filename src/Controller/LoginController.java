@@ -12,8 +12,8 @@ import View.*;
  * Responsible for initiating and validating user authentication processes.
  */
 public class LoginController {
-	LoginView view;
-	Login model;
+	private LoginView view;
+	private Login model;
 	/**
 	 * Constructs a LoginController with a specific view and model.
 	 *

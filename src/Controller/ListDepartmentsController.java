@@ -66,11 +66,14 @@ public class ListDepartmentsController {
 		v.addActionDeleteDepartment(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AddDepartmentModel n = new AddDepartmentModel();
+				if(!view.getName().equals("")) {
 				n.deleteDept(v, v.getIndex());
 				model.refreshTableModel(); // Refresh the table model
                 view.getPane().revalidate();
                 view.getPane().repaint();
-                
+				}else {
+            		JOptionPane.showMessageDialog(view, "Department cannot be empty.");
+            	}
 			}
 		});
 	}

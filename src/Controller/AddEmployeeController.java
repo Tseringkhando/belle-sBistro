@@ -14,10 +14,10 @@ import java.util.regex.Pattern;
  * Controls the process of adding new employees and managing their data validation.
  */
 public class AddEmployeeController {
-    AddEmployeeView view;
-    AddEmployeeModel model;
-    ListEmployeesController listEmployeesController;
-    Departments deptModel;
+	private AddEmployeeView view;
+	private AddEmployeeModel model;
+	private ListEmployeesController listEmployeesController;
+	private Departments deptModel;
     /**
      * Constructor for AddEmployeeController.
      *

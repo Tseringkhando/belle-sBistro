@@ -16,7 +16,7 @@ public class ListManagersView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable tblMangers;
-	JScrollPane scrollPaneManagers ;
+	private JScrollPane scrollPaneManagers ;
 	/**
 	 * Create the panel.
 	 */
